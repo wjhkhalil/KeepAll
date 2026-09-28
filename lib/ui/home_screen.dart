@@ -186,10 +186,8 @@ class HomeScreen extends StatelessWidget {
               _EmergencyCard(settings: settings, onSetUp: () => onOpenTab(AppTab.more)),
               const SizedBox(height: 14),
             ],
-            _YourDayCard(onSeeAll: () => onOpenTasks(null), simple: simple),
-            const SizedBox(height: 14),
             if (data.recentTasks.isNotEmpty) ...[
-              _RecentTasksCard(onSeeAll: () => onOpenTasks(null)),
+              _YourDayCard(onSeeAll: () => onOpenTasks(null)),
               const SizedBox(height: 14),
             ],
             LayoutBuilder(
@@ -215,9 +213,9 @@ class HomeScreen extends StatelessWidget {
   }
 }
 
-/// A small card listing the 2–3 most recently created tasks.
-class _RecentTasksCard extends StatelessWidget {
-  const _RecentTasksCard({required this.onSeeAll});
+/// "Recent tasks" – the 2–3 most recently created tasks.
+class _YourDayCard extends StatelessWidget {
+  const _YourDayCard({required this.onSeeAll});
 
   final VoidCallback onSeeAll;
 
@@ -243,60 +241,6 @@ class _RecentTasksCard extends StatelessWidget {
           ),
           const SizedBox(height: 10),
           for (final t in shown) _DayTaskRow(key: ValueKey(t.id), task: t),
-          Align(
-            alignment: Alignment.centerRight,
-            child: TextButton.icon(
-              onPressed: onSeeAll,
-              iconAlignment: IconAlignment.end,
-              icon: const Icon(Icons.arrow_forward_rounded, size: 18),
-              label: Text(l.homeSeeAll, overflow: TextOverflow.ellipsis),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-/// "☀️ Your day" – the most important card: what needs doing today.
-class _YourDayCard extends StatelessWidget {
-  const _YourDayCard({required this.onSeeAll, required this.simple});
-
-  final VoidCallback onSeeAll;
-  final bool simple;
-
-  @override
-  Widget build(BuildContext context) {
-    final l = context.l10n;
-    final theme = Theme.of(context);
-    final c = context.colors;
-    final due = context.watch<AppData>().dueTodayOrOverdue;
-    final shown = due.take(simple ? 3 : 4).toList();
-
-    return SoftCard(
-      padding: const EdgeInsets.fromLTRB(18, 18, 10, 10),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            children: [
-              IconBubble(icon: Icons.wb_sunny_rounded, color: c.butter, size: 40),
-              const SizedBox(width: 12),
-              Expanded(child: Semantics(header: true, child: Text(l.homeYourDay, style: theme.textTheme.titleLarge))),
-            ],
-          ),
-          const SizedBox(height: 10),
-          Padding(
-            padding: const EdgeInsets.only(right: 8),
-            child: Text(
-              due.isEmpty ? '${l.homeAllDone} ✨' : l.homeYourDayCount(due.length),
-              style: theme.textTheme.titleMedium?.copyWith(color: c.textMuted),
-            ),
-          ),
-          if (shown.isNotEmpty) ...[
-            const SizedBox(height: 4),
-            for (final t in shown) _DayTaskRow(key: ValueKey(t.id), task: t),
-          ],
           Align(
             alignment: Alignment.centerRight,
             child: TextButton.icon(
