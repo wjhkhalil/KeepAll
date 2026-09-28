@@ -14,11 +14,14 @@ import '../state/settings.dart';
 ///   images/NAME    – receipt and document photos
 class Backup {
   static const _marker = 'keepall.json';
-  static const appName = 'Keepall';
+  static const appName = 'KeepAll';
 
   /// Backups made before the app was renamed from "MyLife" still restore.
   static const _legacyMarker = 'mylife.json';
   static const _legacyAppName = 'MyLife';
+
+  /// Backups made before the app was renamed to "KeepAll" still restore.
+  static const _legacyAppName2 = 'Keepall';
   static const _data = 'data.json';
   static const _settings = 'settings.json';
   static const _images = 'images/';
@@ -63,7 +66,7 @@ class Backup {
     }
 
     final marker = json(archive.findFile(_marker) != null ? _marker : _legacyMarker);
-    if (marker['app'] != appName && marker['app'] != _legacyAppName) {
+    if (marker['app'] != appName && marker['app'] != _legacyAppName && marker['app'] != _legacyAppName2) {
       throw const BackupException(BackupError.notABackup);
     }
     final format = marker['format'];

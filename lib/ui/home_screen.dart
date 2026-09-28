@@ -188,12 +188,15 @@ class HomeScreen extends StatelessWidget {
             ],
             _YourDayCard(onSeeAll: () => onOpenTasks(null), simple: simple),
             const SizedBox(height: 14),
+            if (data.recentTasks.isNotEmpty) ...[
+              _RecentTasksCard(onSeeAll: () => onOpenTasks(null)),
+              const SizedBox(height: 14),
+            ],
             LayoutBuilder(
               builder: (context, constraints) {
-                // One column in Simple mode or when text is large relative to width.
-                final textScale = MediaQuery.textScalerOf(context).scale(1);
-                final columns = simple || constraints.maxWidth / textScale < 340 ? 1 : 2;
+                // Exactly two columns in Student / Everyday; one column in Simple.
                 const spacing = 14.0;
+                final columns = simple ? 1 : 2;
                 final width = (constraints.maxWidth - spacing * (columns - 1)) / columns;
                 return Wrap(
                   spacing: spacing,
@@ -207,6 +210,49 @@ class HomeScreen extends StatelessWidget {
             ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+/// A small card listing the 2–3 most recently created tasks.
+class _RecentTasksCard extends StatelessWidget {
+  const _RecentTasksCard({required this.onSeeAll});
+
+  final VoidCallback onSeeAll;
+
+  @override
+  Widget build(BuildContext context) {
+    final l = context.l10n;
+    final theme = Theme.of(context);
+    final c = context.colors;
+    final recent = context.watch<AppData>().recentTasks;
+    final shown = recent.take(3).toList();
+
+    return SoftCard(
+      padding: const EdgeInsets.fromLTRB(18, 18, 10, 10),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              IconBubble(icon: Icons.history_rounded, color: c.lavender, size: 40),
+              const SizedBox(width: 12),
+              Expanded(child: Semantics(header: true, child: Text(l.homeRecentTasks, style: theme.textTheme.titleLarge))),
+            ],
+          ),
+          const SizedBox(height: 10),
+          for (final t in shown) _DayTaskRow(key: ValueKey(t.id), task: t),
+          Align(
+            alignment: Alignment.centerRight,
+            child: TextButton.icon(
+              onPressed: onSeeAll,
+              iconAlignment: IconAlignment.end,
+              icon: const Icon(Icons.arrow_forward_rounded, size: 18),
+              label: Text(l.homeSeeAll, overflow: TextOverflow.ellipsis),
+            ),
+          ),
+        ],
       ),
     );
   }

@@ -59,7 +59,7 @@ class _TaskEditorScreenState extends State<TaskEditorScreen> {
     final picked = await showDatePicker(
       context: context,
       initialDate: _date ?? now,
-      firstDate: DateTime(now.year - 5),
+      firstDate: _isNew ? dateOnly(now) : DateTime(now.year - 5),
       lastDate: DateTime(now.year + 20),
     );
     if (picked != null) setState(() => _date = picked);
@@ -98,6 +98,18 @@ class _TaskEditorScreenState extends State<TaskEditorScreen> {
     final dueAt = _date == null
         ? null
         : DateTime(_date!.year, _date!.month, _date!.day, _time?.hour ?? 0, _time?.minute ?? 0);
+
+    if (_isNew && dueAt != null) {
+      final now = DateTime.now();
+      final isPast = _time != null
+          ? dueAt.isBefore(now)
+          : dateOnly(dueAt).isBefore(dateOnly(now));
+      if (isPast) {
+        showMessage(context, context.l10n.taskPastDateTime);
+        return;
+      }
+    }
+
     final remind = _remind && dueAt != null;
     final existing = widget.task;
     final task = existing == null

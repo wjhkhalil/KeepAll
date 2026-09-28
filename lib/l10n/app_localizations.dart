@@ -111,7 +111,7 @@ abstract class AppLocalizations {
   /// No description provided for @appTitle.
   ///
   /// In en, this message translates to:
-  /// **'Keepall'**
+  /// **'KeepAll'**
   String get appTitle;
 
   /// No description provided for @navHome.
@@ -1221,7 +1221,7 @@ abstract class AppLocalizations {
   /// No description provided for @onbWelcomeTitle.
   ///
   /// In en, this message translates to:
-  /// **'Welcome to Keepall'**
+  /// **'Welcome to KeepAll'**
   String get onbWelcomeTitle;
 
   /// No description provided for @onbWelcomeBody.
@@ -1251,7 +1251,7 @@ abstract class AppLocalizations {
   /// No description provided for @onbModeTitle.
   ///
   /// In en, this message translates to:
-  /// **'How will you use Keepall?'**
+  /// **'How will you use KeepAll?'**
   String get onbModeTitle;
 
   /// No description provided for @onbModeBody.
@@ -1359,7 +1359,7 @@ abstract class AppLocalizations {
   /// No description provided for @docsEmptyBody.
   ///
   /// In en, this message translates to:
-  /// **'Keep track of your passport, ID card, insurance and more. Keepall reminds you before they expire.'**
+  /// **'Keep track of your passport, ID card, insurance and more. KeepAll reminds you before they expire.'**
   String get docsEmptyBody;
 
   /// No description provided for @docNew.
@@ -1593,13 +1593,13 @@ abstract class AppLocalizations {
   /// No description provided for @backupInvalid.
   ///
   /// In en, this message translates to:
-  /// **'This file isn\'t a Keepall backup.'**
+  /// **'This file isn\'t a KeepAll backup.'**
   String get backupInvalid;
 
   /// No description provided for @backupTooNew.
   ///
   /// In en, this message translates to:
-  /// **'This backup was made with a newer version of Keepall. Please update the app first.'**
+  /// **'This backup was made with a newer version of KeepAll. Please update the app first.'**
   String get backupTooNew;
 
   /// No description provided for @backupRestoreConfirmTitle.
@@ -1799,6 +1799,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'The purchase date can\'t be in the future.'**
   String get receiptDateFuture;
+
+  /// No description provided for @homeRecentTasks.
+  ///
+  /// In en, this message translates to:
+  /// **'Recent tasks'**
+  String get homeRecentTasks;
+
+  /// No description provided for @taskPastDateTime.
+  ///
+  /// In en, this message translates to:
+  /// **'The date and time cannot be in the past.'**
+  String get taskPastDateTime;
 }
 
 class _AppLocalizationsDelegate

@@ -9,7 +9,7 @@ class AppLocalizationsFr extends AppLocalizations {
   AppLocalizationsFr([String locale = 'fr']) : super(locale);
 
   @override
-  String get appTitle => 'Keepall';
+  String get appTitle => 'KeepAll';
 
   @override
   String get navHome => 'Accueil';
@@ -666,7 +666,7 @@ class AppLocalizationsFr extends AppLocalizations {
       'Texte et boutons plus grands, rappels de médicaments et de rendez-vous, contact d\'urgence.';
 
   @override
-  String get onbWelcomeTitle => 'Bienvenue dans Keepall';
+  String get onbWelcomeTitle => 'Bienvenue dans KeepAll';
 
   @override
   String get onbWelcomeBody =>
@@ -682,7 +682,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get onbStart => 'Commencer';
 
   @override
-  String get onbModeTitle => 'Comment allez-vous utiliser Keepall ?';
+  String get onbModeTitle => 'Comment allez-vous utiliser KeepAll ?';
 
   @override
   String get onbModeBody => 'Vous pouvez changer cela à tout moment dans Plus.';
@@ -757,7 +757,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get docsEmptyBody =>
-      'Gardez une trace de votre passeport, carte d\'identité, assurance et plus. Keepall vous rappelle avant leur expiration.';
+      'Gardez une trace de votre passeport, carte d\'identité, assurance et plus. KeepAll vous rappelle avant leur expiration.';
 
   @override
   String get docNew => 'Nouveau document';
@@ -900,11 +900,11 @@ class AppLocalizationsFr extends AppLocalizations {
   String get backupFailed => 'Une erreur s\'est produite. Veuillez réessayer.';
 
   @override
-  String get backupInvalid => 'Ce fichier n\'est pas une sauvegarde Keepall.';
+  String get backupInvalid => 'Ce fichier n\'est pas une sauvegarde KeepAll.';
 
   @override
   String get backupTooNew =>
-      'Cette sauvegarde a été créée avec une version plus récente de Keepall. Veuillez d\'abord mettre à jour l\'application.';
+      'Cette sauvegarde a été créée avec une version plus récente de KeepAll. Veuillez d\'abord mettre à jour l\'application.';
 
   @override
   String get backupRestoreConfirmTitle => 'Restaurer la sauvegarde ?';
@@ -1028,4 +1028,11 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get receiptDateFuture =>
       'La date d\'achat ne peut pas être dans le futur.';
+
+  @override
+  String get homeRecentTasks => 'Tâches récentes';
+
+  @override
+  String get taskPastDateTime =>
+      'La date et l\'heure ne peuvent pas être dans le passé.';
 }

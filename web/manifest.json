@@ -1,6 +1,6 @@
 {
-    "name": "Keepall",
-    "short_name": "Keepall",
+    "name": "KeepAll",
+    "short_name": "KeepAll",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#FEFAEA",

@@ -33,7 +33,7 @@ void main() {
   testWidgets('onboarding in Simple mode enables accessibility defaults', (tester) async {
     final (settings, _) = await _setUp(tester);
 
-    expect(find.text('Welcome to Keepall'), findsOneWidget);
+    expect(find.text('Welcome to KeepAll'), findsOneWidget);
     await tester.tap(find.text('Get started'));
     await tester.pumpAndSettle();
 

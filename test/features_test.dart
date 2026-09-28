@@ -191,10 +191,10 @@ void main() {
       expect(Backup.read(zip).count('tasks'), 1);
     });
 
-    test('new backups are marked as Keepall', () async {
+    test('new backups are marked as KeepAll', () async {
       final (src, settings, _) = await make('mark', {});
       final contents = ZipDecoder().decodeBytes(await Backup.create(src, settings));
-      expect(utf8.decode(contents.findFile('keepall.json')!.content), contains('"Keepall"'));
+      expect(utf8.decode(contents.findFile('keepall.json')!.content), contains('"KeepAll"'));
       expect(Backup.fileName(DateTime(2026, 9, 27)), 'keepall-backup-2026-09-27.zip');
     });
 

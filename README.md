@@ -1,4 +1,4 @@
-# Keepall
+# KeepAll
 
 A simple personal life organizer: tasks and reminders, shopping lists and
 receipts in one app. Everything stays on the device. There is no login, no
@@ -18,7 +18,7 @@ but reminders are skipped.
 
 ## Design
 
-Keepall is designed to feel like a calm, friendly planner rather than a
+KeepAll is designed to feel like a calm, friendly planner rather than a
 productivity tool. It combines two styles, "Soft Pastel Planner" and
 "Modern Soft Nature".
 
@@ -122,4 +122,3 @@ lib/
 Change the placeholder app ID `com.example.keepall` (Android `build.gradle.kts`,
 iOS/macOS bundle identifier, Linux `APPLICATION_ID`) to your own reverse
 domain, e.g. `com.yourname.keepall`.
-# KeepAll

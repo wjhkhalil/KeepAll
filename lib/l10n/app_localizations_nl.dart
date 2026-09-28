@@ -9,7 +9,7 @@ class AppLocalizationsNl extends AppLocalizations {
   AppLocalizationsNl([String locale = 'nl']) : super(locale);
 
   @override
-  String get appTitle => 'Keepall';
+  String get appTitle => 'KeepAll';
 
   @override
   String get navHome => 'Start';
@@ -666,7 +666,7 @@ class AppLocalizationsNl extends AppLocalizations {
       'Grotere tekst en knoppen, herinneringen voor medicijnen en afspraken, noodcontact.';
 
   @override
-  String get onbWelcomeTitle => 'Welkom bij Keepall';
+  String get onbWelcomeTitle => 'Welkom bij KeepAll';
 
   @override
   String get onbWelcomeBody =>
@@ -682,7 +682,7 @@ class AppLocalizationsNl extends AppLocalizations {
   String get onbStart => 'Aan de slag';
 
   @override
-  String get onbModeTitle => 'Hoe gebruik je Keepall?';
+  String get onbModeTitle => 'Hoe gebruik je KeepAll?';
 
   @override
   String get onbModeBody => 'Je kunt dit altijd wijzigen bij Meer.';
@@ -756,7 +756,7 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get docsEmptyBody =>
-      'Houd je paspoort, ID-kaart, verzekering en meer bij. Keepall herinnert je voordat ze verlopen.';
+      'Houd je paspoort, ID-kaart, verzekering en meer bij. KeepAll herinnert je voordat ze verlopen.';
 
   @override
   String get docNew => 'Nieuw document';
@@ -898,11 +898,11 @@ class AppLocalizationsNl extends AppLocalizations {
   String get backupFailed => 'Er ging iets mis. Probeer het opnieuw.';
 
   @override
-  String get backupInvalid => 'Dit bestand is geen back-up van Keepall.';
+  String get backupInvalid => 'Dit bestand is geen back-up van KeepAll.';
 
   @override
   String get backupTooNew =>
-      'Deze back-up is gemaakt met een nieuwere versie van Keepall. Werk de app eerst bij.';
+      'Deze back-up is gemaakt met een nieuwere versie van KeepAll. Werk de app eerst bij.';
 
   @override
   String get backupRestoreConfirmTitle => 'Back-up herstellen?';
@@ -1026,4 +1026,11 @@ class AppLocalizationsNl extends AppLocalizations {
   @override
   String get receiptDateFuture =>
       'De aankoopdatum kan niet in de toekomst liggen.';
+
+  @override
+  String get homeRecentTasks => 'Recente taken';
+
+  @override
+  String get taskPastDateTime =>
+      'Datum en tijd mogen niet in het verleden liggen.';
 }

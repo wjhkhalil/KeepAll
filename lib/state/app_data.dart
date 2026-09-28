@@ -268,6 +268,12 @@ class AppData extends ChangeNotifier {
 
   List<Task> get openTasks => _tasks.where((t) => !t.done).toList();
 
+  /// The 2–3 most recently created tasks, newest first.
+  List<Task> get recentTasks {
+    final sorted = [..._tasks]..sort((a, b) => b.createdAt.compareTo(a.createdAt));
+    return sorted.take(3).toList();
+  }
+
   /// Open tasks due today or earlier.
   List<Task> get dueTodayOrOverdue {
     final end = dateOnly(now).add(const Duration(days: 1));

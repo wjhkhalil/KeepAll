@@ -9,7 +9,7 @@ class AppLocalizationsPl extends AppLocalizations {
   AppLocalizationsPl([String locale = 'pl']) : super(locale);
 
   @override
-  String get appTitle => 'Keepall';
+  String get appTitle => 'KeepAll';
 
   @override
   String get navHome => 'Start';
@@ -679,7 +679,7 @@ class AppLocalizationsPl extends AppLocalizations {
       'Większy tekst i przyciski, przypomnienia o lekach i wizytach, kontakt alarmowy.';
 
   @override
-  String get onbWelcomeTitle => 'Witaj w Keepall';
+  String get onbWelcomeTitle => 'Witaj w KeepAll';
 
   @override
   String get onbWelcomeBody =>
@@ -695,7 +695,7 @@ class AppLocalizationsPl extends AppLocalizations {
   String get onbStart => 'Zaczynamy';
 
   @override
-  String get onbModeTitle => 'Jak będziesz korzystać z Keepall?';
+  String get onbModeTitle => 'Jak będziesz korzystać z KeepAll?';
 
   @override
   String get onbModeBody =>
@@ -774,7 +774,7 @@ class AppLocalizationsPl extends AppLocalizations {
 
   @override
   String get docsEmptyBody =>
-      'Miej pod kontrolą paszport, dowód osobisty, ubezpieczenie i inne dokumenty. Keepall przypomni ci, zanim wygasną.';
+      'Miej pod kontrolą paszport, dowód osobisty, ubezpieczenie i inne dokumenty. KeepAll przypomni ci, zanim wygasną.';
 
   @override
   String get docNew => 'Nowy dokument';
@@ -920,11 +920,11 @@ class AppLocalizationsPl extends AppLocalizations {
   String get backupFailed => 'Coś poszło nie tak. Spróbuj ponownie.';
 
   @override
-  String get backupInvalid => 'Ten plik nie jest kopią zapasową Keepall.';
+  String get backupInvalid => 'Ten plik nie jest kopią zapasową KeepAll.';
 
   @override
   String get backupTooNew =>
-      'Ta kopia zapasowa została utworzona w nowszej wersji Keepall. Najpierw zaktualizuj aplikację.';
+      'Ta kopia zapasowa została utworzona w nowszej wersji KeepAll. Najpierw zaktualizuj aplikację.';
 
   @override
   String get backupRestoreConfirmTitle => 'Przywrócić kopię zapasową?';
@@ -1051,4 +1051,10 @@ class AppLocalizationsPl extends AppLocalizations {
 
   @override
   String get receiptDateFuture => 'Data zakupu nie może być w przyszłości.';
+
+  @override
+  String get homeRecentTasks => 'Ostatnie zadania';
+
+  @override
+  String get taskPastDateTime => 'Data i godzina nie mogą być w przeszłości.';
 }
