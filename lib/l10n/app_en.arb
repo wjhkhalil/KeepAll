@@ -1,0 +1,503 @@
+{
+  "@@locale": "en",
+  "appTitle": "Keepall",
+  "navHome": "Home",
+  "navTasks": "Tasks",
+  "navLists": "Lists",
+  "navReceipts": "Receipts",
+  "navMore": "More",
+  "save": "Save",
+  "cancel": "Cancel",
+  "delete": "Delete",
+  "undo": "Undo",
+  "edit": "Edit",
+  "add": "Add",
+  "rename": "Rename",
+  "close": "Close",
+  "all": "All",
+  "greetingMorning": "Good morning",
+  "greetingAfternoon": "Good afternoon",
+  "greetingEvening": "Good evening",
+  "greetingWithName": "{greeting}, {name}",
+  "@greetingWithName": {
+    "placeholders": {
+      "greeting": {
+        "type": "String"
+      },
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "homeToday": "Today",
+  "homeTodayCount": "{count, plural, =0{Nothing due} =1{1 thing due} other{{count} things due}}",
+  "@homeTodayCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "homeShopping": "Shopping",
+  "homeShoppingCount": "{count, plural, =0{Nothing to buy} =1{1 item} other{{count} items}}",
+  "@homeShoppingCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "homeReceipts": "Receipts",
+  "homeReceiptsCount": "{count, plural, =0{None saved} =1{1 saved} other{{count} saved}}",
+  "@homeReceiptsCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "homeSpending": "Spending",
+  "homeSpendingNone": "Nothing this month",
+  "homeHomeTasks": "Home tasks",
+  "homeDueThisWeek": "{count, plural, =0{Nothing this week} =1{1 due this week} other{{count} due this week}}",
+  "@homeDueThisWeek": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "homeSubscriptions": "Subscriptions",
+  "homeActive": "{count, plural, =0{None added} other{{count} active}}",
+  "@homeActive": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "homeBills": "Bills & documents",
+  "homeHomework": "Homework",
+  "homeOpen": "{count, plural, =0{All done} other{{count} to do}}",
+  "@homeOpen": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "homeNextExam": "Next exam",
+  "homeNoExam": "No exams planned",
+  "examCountdown": "{days, plural, =0{Today} =1{Tomorrow} other{In {days} days}}",
+  "@examCountdown": {
+    "placeholders": {
+      "days": {
+        "type": "int"
+      }
+    }
+  },
+  "homeMedicine": "Medicine",
+  "homeAppointments": "Appointments",
+  "homeNext": "Next: {when}",
+  "@homeNext": {
+    "placeholders": {
+      "when": {
+        "type": "String"
+      }
+    }
+  },
+  "homeNothingPlanned": "Nothing planned",
+  "homeDueToday": "Due today",
+  "homeAllDone": "All done for today",
+  "homeSeeAll": "See all",
+  "homeEmergency": "Emergency contact",
+  "homeCall": "Call {name}",
+  "@homeCall": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "homeEmergencyNotSet": "Add an emergency contact in More",
+  "callFailed": "Couldn't start a call on this device.",
+  "tasksTitle": "Tasks",
+  "tasksEmptyTitle": "Nothing here yet",
+  "tasksEmptyBody": "Your list is waiting for its first task.",
+  "tasksEmptyFiltered": "Nothing in this category.",
+  "sectionOverdue": "Overdue",
+  "sectionToday": "Today",
+  "sectionTomorrow": "Tomorrow",
+  "sectionThisWeek": "This week",
+  "sectionLater": "Later",
+  "sectionNoDate": "No date",
+  "sectionCompleted": "Completed ({count})",
+  "@sectionCompleted": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "taskNew": "New task",
+  "taskEdit": "Edit task",
+  "taskTitleLabel": "What do you need to do?",
+  "taskTitleRequired": "Please enter a title",
+  "taskNotesLabel": "Notes (optional)",
+  "taskCategoryLabel": "Type",
+  "taskDateLabel": "Date",
+  "taskNoDate": "No date",
+  "taskTimeLabel": "Time",
+  "taskAllDay": "All day",
+  "taskRemind": "Remind me",
+  "taskRemindAllDayHint": "You'll get a reminder at 09:00 on the day.",
+  "taskRemindNeedsDate": "Pick a date to get a reminder.",
+  "taskRepeatLabel": "Repeat",
+  "taskClearDate": "Remove date",
+  "taskClearTime": "Remove time",
+  "taskCompleted": "Task completed",
+  "taskRescheduled": "Done. Next time: {date}",
+  "@taskRescheduled": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "taskDeleted": "Task deleted",
+  "taskMarkDone": "Mark as done",
+  "taskMarkNotDone": "Mark as not done",
+  "taskOverdue": "Overdue",
+  "taskRepeats": "Repeats",
+  "taskSnoozed": "Snoozed for 10 minutes",
+  "taskNotFound": "This task no longer exists.",
+  "confirmDeleteTitle": "Delete?",
+  "confirmDeleteItem": "Delete \"{name}\"?",
+  "@confirmDeleteItem": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "reminderPermissionDenied": "Notifications are off, so reminders won't appear. You can allow them in your phone's settings.",
+  "catGeneral": "General",
+  "catStudy": "Homework",
+  "catExam": "Exam",
+  "catHome": "Home",
+  "catAppointment": "Appointment",
+  "catMedicine": "Medicine",
+  "catDocument": "Document",
+  "catSubscription": "Subscription",
+  "catBill": "Bill",
+  "repeatNone": "Does not repeat",
+  "repeatDaily": "Every day",
+  "repeatWeekly": "Every week",
+  "repeatMonthly": "Every month",
+  "repeatYearly": "Every year",
+  "notifChannelName": "Reminders",
+  "notifChannelDescription": "Task, medicine and appointment reminders",
+  "notifSnooze": "Snooze 10 min",
+  "notifDone": "Done",
+  "listsTitle": "Shopping lists",
+  "listsEmptyTitle": "No lists yet",
+  "listsEmptyBody": "Create a list for groceries, school supplies or anything else.",
+  "listNew": "New list",
+  "listNameLabel": "List name",
+  "listNameRequired": "Please enter a name",
+  "listItemsLeft": "{count, plural, =0{All done} =1{1 item left} other{{count} items left}}",
+  "@listItemsLeft": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "listDeleted": "List deleted",
+  "listEmptyItems": "Your list is waiting for its first item.",
+  "itemAddHint": "Add an item",
+  "itemAdd": "Add item",
+  "itemEdit": "Edit item",
+  "itemNameLabel": "Item",
+  "itemQuantityLabel": "Quantity (optional)",
+  "itemRemoved": "Item removed",
+  "clearChecked": "Clear ticked items",
+  "clearedChecked": "Ticked items cleared",
+  "listOptions": "List options",
+  "receiptsTitle": "Receipts",
+  "receiptsEmptyTitle": "No receipts yet",
+  "receiptsEmptyBody": "Save receipts to track spending and keep proof of purchase for warranties.",
+  "receiptNew": "New receipt",
+  "receiptEdit": "Edit receipt",
+  "receiptMerchantLabel": "Shop or merchant",
+  "receiptMerchantRequired": "Please enter where you bought it",
+  "receiptAmountLabel": "Amount",
+  "receiptAmountInvalid": "Enter an amount like {example}",
+  "receiptCurrencyLabel": "Currency",
+  "receiptDateLabel": "Date of purchase",
+  "receiptCategoryLabel": "Category",
+  "receiptNoteLabel": "Note (optional)",
+  "receiptWarrantyLabel": "Warranty until",
+  "receiptNoWarranty": "No warranty",
+  "receiptPhoto": "Photo of receipt from {merchant}",
+  "@receiptPhoto": {
+    "placeholders": {
+      "merchant": {
+        "type": "String"
+      }
+    }
+  },
+  "receiptDeleted": "Receipt deleted",
+  "receiptThisMonth": "This month",
+  "receiptSearchHint": "Search receipts",
+  "receiptNoResults": "No receipts match your search.",
+  "receiptWarrantyUntil": "Warranty until {date}",
+  "@receiptWarrantyUntil": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "receiptWarrantyExpired": "Warranty expired",
+  "rcGroceries": "Groceries",
+  "rcHousehold": "Household",
+  "rcElectronics": "Electronics",
+  "rcClothing": "Clothing",
+  "rcHealth": "Health",
+  "rcTransport": "Transport",
+  "rcEatingOut": "Eating out",
+  "rcSchool": "School",
+  "rcOther": "Other",
+  "moreTitle": "More",
+  "settingsGeneral": "General",
+  "settingsName": "Your name",
+  "settingsNameNotSet": "Not set",
+  "settingsMode": "Mode",
+  "settingsCurrency": "Default currency",
+  "settingsAppearance": "Appearance",
+  "settingsTheme": "Theme",
+  "themeSystem": "Match phone",
+  "themeLight": "Light",
+  "themeDark": "Dark",
+  "settingsAccessibility": "Accessibility",
+  "settingsLargeText": "Larger text",
+  "settingsLargeTextDesc": "Makes all text and buttons bigger.",
+  "settingsHighContrast": "High contrast",
+  "settingsHighContrastDesc": "Stronger colours that are easier to read.",
+  "settingsConfirmDelete": "Ask before deleting",
+  "settingsConfirmDeleteDesc": "Show a confirmation before anything is deleted.",
+  "settingsSafety": "Safety",
+  "settingsEmergency": "Emergency contact",
+  "emergencyNameLabel": "Name",
+  "emergencyPhoneLabel": "Phone number",
+  "settingsAbout": "About",
+  "aboutBody": "Everything stays on this device. No account, no ads, no tracking.",
+  "aboutFormats": "Dates use day-month-year order and weeks start on Monday.",
+  "modeStudent": "Student",
+  "modeStudentDesc": "Homework, exams, school lists and simple spending.",
+  "modeEveryday": "Everyday",
+  "modeEverydayDesc": "Receipts, home tasks, bills, subscriptions and shopping.",
+  "modeSimple": "Simple",
+  "modeSimpleDesc": "Bigger text and buttons, medicine and appointment reminders, emergency contact.",
+  "onbWelcomeTitle": "Welcome to Keepall",
+  "onbWelcomeBody": "Your everyday things, all in one peaceful place.",
+  "onbNext": "Next",
+  "onbBack": "Back",
+  "onbStart": "Get started",
+  "onbModeTitle": "How will you use Keepall?",
+  "onbModeBody": "You can change this any time in More.",
+  "onbNameTitle": "What should we call you?",
+  "onbNameHint": "Your first name (optional)",
+  "onbCurrencyTitle": "Which currency do you use?",
+  "onbStep": "Step {step} of {total}",
+  "@onbStep": {
+    "placeholders": {
+      "step": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "navSpending": "Spending",
+  "spendingTitle": "Spending",
+  "photoAdd": "Add photo",
+  "photoTake": "Take photo",
+  "photoChoose": "Choose from gallery",
+  "photoRemove": "Remove photo",
+  "photoError": "Couldn't add the photo. Please try again.",
+  "homeDocuments": "Documents",
+  "homeDocsCount": "{count, plural, =0{None saved} =1{1 document} other{{count} documents}}",
+  "@homeDocsCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "homeDocsExpiring": "{count, plural, =1{1 expiring soon} other{{count} expiring soon}}",
+  "@homeDocsExpiring": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "docsTitle": "Documents",
+  "docsEmptyTitle": "No documents yet",
+  "docsEmptyBody": "Keep track of your passport, ID card, insurance and more. Keepall reminds you before they expire.",
+  "docNew": "New document",
+  "docEdit": "Edit document",
+  "docTypeLabel": "Type",
+  "docTitleLabel": "Name",
+  "docNumberLabel": "Document number (optional)",
+  "docExpiryLabel": "Expires on",
+  "docNoExpiry": "No expiry date",
+  "docExpired": "Expired",
+  "docExpiresIn": "{days, plural, =0{Expires today} =1{Expires tomorrow} other{Expires in {days} days}}",
+  "@docExpiresIn": {
+    "placeholders": {
+      "days": {
+        "type": "int"
+      }
+    }
+  },
+  "docValidUntil": "Valid until {date}",
+  "@docValidUntil": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "docExpiresOn": "Expires on {date}",
+  "@docExpiresOn": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "docRemindLabel": "Reminder",
+  "docRemindNone": "No reminder",
+  "docRemindBefore": "{days, plural, =1{1 day before} other{{days} days before}}",
+  "@docRemindBefore": {
+    "placeholders": {
+      "days": {
+        "type": "int"
+      }
+    }
+  },
+  "docRemindNeedsDate": "Add an expiry date to get a reminder.",
+  "docPhoto": "Photo of {title}",
+  "@docPhoto": {
+    "placeholders": {
+      "title": {
+        "type": "String"
+      }
+    }
+  },
+  "docDeleted": "Document deleted",
+  "docTypePassport": "Passport",
+  "docTypeIdCard": "ID card",
+  "docTypeDrivingLicence": "Driving licence",
+  "docTypeInsurance": "Insurance",
+  "docTypeVehicle": "Car / vehicle",
+  "docTypeHealth": "Health card",
+  "docTypeContract": "Contract",
+  "docTypeWarranty": "Warranty",
+  "docTypeOther": "Other",
+  "moreOrganise": "Organise",
+  "settingsLanguage": "Language",
+  "languageSystem": "Match phone",
+  "listShare": "Share list",
+  "listCopied": "List copied to clipboard",
+  "backupTitle": "Backup",
+  "backupCreate": "Create backup",
+  "backupCreateDesc": "Save all your data and photos to a file.",
+  "backupRestore": "Restore from backup",
+  "backupRestoreDesc": "Replace everything with a backup file.",
+  "backupCreated": "Backup saved",
+  "backupFailed": "Something went wrong. Please try again.",
+  "backupInvalid": "This file isn't a Keepall backup.",
+  "backupTooNew": "This backup was made with a newer version of Keepall. Please update the app first.",
+  "backupRestoreConfirmTitle": "Restore backup?",
+  "backupContains": "Tasks: {tasks}\nLists: {lists}\nReceipts: {receipts}\nDocuments: {documents}",
+  "@backupContains": {
+    "placeholders": {
+      "tasks": {
+        "type": "int"
+      },
+      "lists": {
+        "type": "int"
+      },
+      "receipts": {
+        "type": "int"
+      },
+      "documents": {
+        "type": "int"
+      }
+    }
+  },
+  "backupRestoreWarning": "Everything currently in the app will be replaced.",
+  "backupRestoreAction": "Restore",
+  "backupRestored": "Backup restored",
+  "modeStudentShort": "School, exams & money",
+  "modeEverydayShort": "Home & everyday life",
+  "modeSimpleShort": "Bigger & easier",
+  "homeYourDay": "Your day",
+  "homeYourDayCount": "{count, plural, =0{Nothing to take care of} =1{1 thing to take care of} other{{count} things to take care of}}",
+  "@homeYourDayCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "homeView": "View",
+  "receiptMonthSpending": "{month} spending",
+  "@receiptMonthSpending": {
+    "placeholders": {
+      "month": {
+        "type": "String"
+      }
+    }
+  },
+  "receiptCount": "{count, plural, =0{No receipts} =1{1 receipt} other{{count} receipts}}",
+  "@receiptCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "docSoon": "Expires soon",
+  "tasksAllDoneBody": "Enjoy the rest of your day.",
+  "settingsPalette": "Color theme",
+  "paletteDeepOcean": "Deep Ocean",
+  "paletteMatchaHoney": "Matcha & Honey",
+  "paletteSunsetPop": "Sunset Pop",
+  "paletteMidnightCandy": "Midnight Candy",
+  "paletteSoftPastel": "Soft Pastel",
+  "paletteAlwaysDark": "Always dark",
+  "paletteCreamCocoa": "Cream & Cocoa",
+  "paletteNordicSnow": "Nordic Snow",
+  "paletteSkySunshine": "Sky & Sunshine",
+  "paletteLavenderNight": "Lavender Night",
+  "paletteLemonCharcoal": "Lemon & Charcoal",
+  "currencySearchHint": "Search currency or country",
+  "currencyPopular": "Popular",
+  "currencyAll": "All currencies",
+  "currencyNoResults": "No currency found",
+  "currencyMore": "More currencies",
+  "@receiptAmountInvalid": {
+    "placeholders": {
+      "example": {
+        "type": "String"
+      }
+    }
+  },
+  "receiptDateFuture": "The purchase date can't be in the future."
+}
