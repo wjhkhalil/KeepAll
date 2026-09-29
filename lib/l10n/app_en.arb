@@ -500,6 +500,10 @@
     }
   },
   "receiptDateFuture": "The purchase date can't be in the future.",
-  "homeRecentTasks": "Recent tasks",
-  "taskPastDateTime": "The date and time cannot be in the past."
+  "homeUpcomingTasks": "Upcoming tasks",
+  "taskPastDateTime": "The date and time cannot be in the past.",
+  "reminderOnTimeTitle": "Allow reminders on time",
+  "reminderOnTimeBody": "Android may hold reminders back while your phone is asleep. To get them exactly on time, even when KeepAll is closed, turn on “Alarms & reminders” for KeepAll on the next screen.",
+  "reminderOnTimeAllow": "Allow",
+  "reminderOnTimeLater": "Not now"
 }

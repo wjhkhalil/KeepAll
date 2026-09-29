@@ -282,6 +282,10 @@
   "currencyNoResults": "Keine Währung gefunden",
   "currencyMore": "Weitere Währungen",
   "receiptDateFuture": "Das Kaufdatum darf nicht in der Zukunft liegen.",
-  "homeRecentTasks": "Neueste Aufgaben",
-  "taskPastDateTime": "Datum und Uhrzeit dürfen nicht in der Vergangenheit liegen."
+  "homeUpcomingTasks": "Nächste Aufgaben",
+  "taskPastDateTime": "Datum und Uhrzeit dürfen nicht in der Vergangenheit liegen.",
+  "reminderOnTimeTitle": "Erinnerungen pünktlich erlauben",
+  "reminderOnTimeBody": "Android kann Erinnerungen zurückhalten, während dein Handy ruht. Damit sie pünktlich kommen, auch wenn KeepAll geschlossen ist, aktiviere auf dem nächsten Bildschirm „Wecker & Erinnerungen“ für KeepAll.",
+  "reminderOnTimeAllow": "Erlauben",
+  "reminderOnTimeLater": "Nicht jetzt"
 }

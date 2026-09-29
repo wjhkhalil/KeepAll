@@ -141,11 +141,14 @@ class AppData extends ChangeNotifier {
   );
 
   int _newNotificationId() {
-    final used = {..._tasks.map((t) => t.notificationId), ..._documents.map((d) => d.notificationId)};
+    final used = {
+      for (final t in _tasks) ...[t.notificationId, t.snoozeNotificationId],
+      ..._documents.map((d) => d.notificationId),
+    };
     int id;
     do {
       id = _random.nextInt(0x7FFFFFFF);
-    } while (used.contains(id));
+    } while (used.contains(id) || used.contains(id ^ 0x40000000));
     return id;
   }
 
@@ -166,12 +169,16 @@ class AppData extends ChangeNotifier {
     if (task == null) return;
     _tasks.removeWhere((t) => t.id == id);
     await _commit();
-    await scheduler.cancel(task.notificationId);
+    await _cancelReminders(task);
   }
 
   /// Marks a task done. Repeating tasks instead roll forward to their next
   /// occurrence. Returns the previous state so the UI can offer "Undo".
-  Future<Task?> completeTask(String id) async {
+  ///
+  /// [includeToday] is for "Done" on a reminder: the phone repeats those by
+  /// itself, so today's reminder may belong to a task still dated days ago.
+  /// Then today's occurrence is the one being done, not only the missed one.
+  Future<Task?> completeTask(String id, {bool includeToday = false}) async {
     final task = taskById(id);
     if (task == null) return null;
     final Task updated;
@@ -179,7 +186,11 @@ class AppData extends ChangeNotifier {
       var next = task.repeat.next(task.dueAt!, anchorDay: task.anchorDay);
       // Skip occurrences already in the past (e.g. a week of missed pills).
       final today = dateOnly(now);
-      bool inPast(DateTime d) => task.hasTime ? !d.isAfter(now) : dateOnly(d).isBefore(today);
+      bool inPast(DateTime d) => task.hasTime
+          ? !d.isAfter(now)
+          : includeToday
+          ? !dateOnly(d).isAfter(today)
+          : dateOnly(d).isBefore(today);
       while (inPast(next)) {
         next = task.repeat.next(next, anchorDay: task.anchorDay);
       }
@@ -203,35 +214,86 @@ class AppData extends ChangeNotifier {
     await saveTask(task.copyWith(snoozedUntil: () => now.add(duration)));
   }
 
-  ReminderRequest? reminderFor(Task task) {
-    final when = task.reminderAt;
-    if (when == null || !when.isAfter(now)) return null;
-    final body = task.notes.isNotEmpty
-        ? task.notes
+  /// The OS reminders for [task]: none, one, or for a repeating task that
+  /// was snoozed, the repeating one plus the snoozed one.
+  List<ReminderRequest> remindersFor(Task task) {
+    final first = task.reminderAt;
+    if (first == null) return const [];
+    ReminderRequest request(int id, DateTime when, String body, [Repeat repeat = Repeat.none]) =>
+        ReminderRequest(
+          id: id,
+          title: task.title,
+          body: task.notes.isNotEmpty ? task.notes : body,
+          when: when,
+          payload: '$taskPayloadPrefix${task.id}',
+          repeat: repeat,
+        );
+    String dated(DateTime d) => task.hasTime ? formatDateTime(d) : formatDate(d);
+
+    if (task.repeat == Repeat.none) {
+      if (!first.isAfter(now)) return const [];
+      return [request(task.notificationId, first, dated(task.dueAt!))];
+    }
+
+    // Repeating: the next occurrence, even if earlier ones were never ticked
+    // off — the medicine is still needed tomorrow.
+    var next = task.hasTime
+        ? task.dueAt!
+        : DateTime(task.dueAt!.year, task.dueAt!.month, task.dueAt!.day, Task.allDayReminderHour);
+    while (!next.isAfter(now)) {
+      next = task.repeat.next(next, anchorDay: task.anchorDay);
+    }
+    final phoneRepeat = _phoneRepeat(task, next);
+    final body = phoneRepeat == Repeat.none
+        ? dated(next)
         : task.hasTime
-        ? formatDateTime(task.dueAt!)
-        : formatDate(task.dueAt!);
-    return ReminderRequest(
-      id: task.notificationId,
-      title: task.title,
-      body: body,
-      when: when,
-      payload: '$taskPayloadPrefix${task.id}',
-    );
+        ? '${_repeatText(task.repeat)} · ${formatTime(next)}'
+        : _repeatText(task.repeat);
+    final snooze = task.snoozedUntil;
+    return [
+      request(task.notificationId, next, body, phoneRepeat),
+      if (snooze != null && snooze.isAfter(now)) request(task.snoozeNotificationId, snooze, dated(task.dueAt!)),
+    ];
+  }
+
+  /// Whether the phone can repeat [task]'s reminder by itself, starting at
+  /// [next]. It only matches the time (and weekday / day of month) and
+  /// ignores the start date, so it may only take over once the start is at
+  /// most one period away; until then the first one is a single reminder.
+  /// It would also skip months without a 29th–31st, so those stay single
+  /// reminders, rescheduled whenever the app opens or the task is ticked.
+  Repeat _phoneRepeat(Task task, DateTime next) {
+    final r = task.repeat;
+    if (next.isAfter(r.next(now))) return Repeat.none;
+    final day = task.anchorDay ?? task.dueAt!.day;
+    if (r == Repeat.monthly && day > 28) return Repeat.none;
+    if (r == Repeat.yearly && task.dueAt!.month == 2 && day > 28) return Repeat.none;
+    return r;
+  }
+
+  String _repeatText(Repeat r) => switch (r) {
+    Repeat.none => '',
+    Repeat.daily => l10n.repeatDaily,
+    Repeat.weekly => l10n.repeatWeekly,
+    Repeat.monthly => l10n.repeatMonthly,
+    Repeat.yearly => l10n.repeatYearly,
+  };
+
+  Future<void> _cancelReminders(Task task) async {
+    await scheduler.cancel(task.notificationId);
+    await scheduler.cancel(task.snoozeNotificationId);
   }
 
   Future<void> _syncReminder(Task task) async {
-    final request = reminderFor(task);
-    if (request == null) {
-      await scheduler.cancel(task.notificationId);
-    } else {
-      await scheduler.schedule(request);
+    await _cancelReminders(task);
+    for (final r in remindersFor(task)) {
+      await scheduler.schedule(r);
     }
   }
 
   Future<void> resyncReminders() async {
     final requests = [
-      ..._tasks.map(reminderFor).whereType<ReminderRequest>(),
+      ..._tasks.expand(remindersFor),
       ..._documents.map(reminderForDocument).whereType<ReminderRequest>(),
     ];
     try {
@@ -257,7 +319,7 @@ class AppData extends ChangeNotifier {
         await snoozeTask(id);
         return null;
       case ReminderScheduler.actionDone:
-        await completeTask(id);
+        await completeTask(id, includeToday: true);
         return null;
       default:
         return ReminderTarget.task(id);
@@ -268,11 +330,10 @@ class AppData extends ChangeNotifier {
 
   List<Task> get openTasks => _tasks.where((t) => !t.done).toList();
 
-  /// The 2–3 most recently created tasks, newest first.
-  List<Task> get recentTasks {
-    final sorted = [..._tasks]..sort((a, b) => b.createdAt.compareTo(a.createdAt));
-    return sorted.take(3).toList();
-  }
+  /// The next 3 open tasks by due time for the Home card: overdue first,
+  /// then the soonest, tasks without a date last. Not by creation time — a
+  /// task added last but due tonight must not push out this afternoon's.
+  List<Task> get upcomingTasks => (openTasks..sort(_byDue)).take(3).toList();
 
   /// Open tasks due today or earlier.
   List<Task> get dueTodayOrOverdue {

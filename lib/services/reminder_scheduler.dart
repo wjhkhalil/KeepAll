@@ -6,6 +6,8 @@ import 'package:flutter_timezone/flutter_timezone.dart';
 import 'package:timezone/data/latest_all.dart' as tzdata;
 import 'package:timezone/timezone.dart' as tz;
 
+import '../data/models.dart';
+
 /// One scheduled reminder, already rendered into user-facing text.
 class ReminderRequest {
   const ReminderRequest({
@@ -14,13 +16,21 @@ class ReminderRequest {
     required this.body,
     required this.when,
     required this.payload,
+    this.repeat = Repeat.none,
   });
 
   final int id;
   final String title;
   final String body;
+
+  /// The first time it fires.
   final DateTime when;
   final String payload;
+
+  /// After [when], the phone repeats it by itself (same time of day) without
+  /// the app running, so a repeating task that nobody ticks off keeps
+  /// reminding. [Repeat.none] fires once.
+  final Repeat repeat;
 }
 
 /// Localised labels the OS shows outside the app.
@@ -65,6 +75,15 @@ abstract class ReminderScheduler {
   Future<ReminderResponse?> launchResponse();
 
   Future<bool> requestPermission();
+
+  /// Whether reminders fire at their exact time. False on Android 14+ until
+  /// the user allows "Alarms & reminders": Android then delays reminders
+  /// while the phone sleeps, so they may only show up when it wakes.
+  Future<bool> canRemindOnTime();
+
+  /// Opens the system "Alarms & reminders" setting for this app. Returns
+  /// whether reminders can now fire on time.
+  Future<bool> requestOnTimeReminders();
 
   Future<void> schedule(ReminderRequest request);
   Future<void> cancel(int id);
@@ -117,7 +136,8 @@ class LocalNotificationScheduler implements ReminderScheduler {
 
     await _plugin.initialize(
       settings: InitializationSettings(
-        android: const AndroidInitializationSettings('@mipmap/ic_launcher'),
+        // White status-bar icon; kept in release builds by res/raw/keep.xml.
+        android: const AndroidInitializationSettings('@drawable/ic_notification'),
         iOS: DarwinInitializationSettings(
           requestAlertPermission: false,
           requestBadgePermission: false,
@@ -173,6 +193,25 @@ class LocalNotificationScheduler implements ReminderScheduler {
     }
   }
 
+  AndroidFlutterLocalNotificationsPlugin? get _android =>
+      defaultTargetPlatform == TargetPlatform.android
+          ? _plugin.resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>()
+          : null;
+
+  @override
+  Future<bool> canRemindOnTime() async {
+    final android = _android;
+    if (!_ready || android == null) return true;
+    return await android.canScheduleExactNotifications() ?? true;
+  }
+
+  @override
+  Future<bool> requestOnTimeReminders() async {
+    final android = _android;
+    if (!_ready || android == null) return true;
+    return await android.requestExactAlarmsPermission() ?? false;
+  }
+
   NotificationDetails _details() {
     final t = _texts!;
     return NotificationDetails(
@@ -219,6 +258,13 @@ class LocalNotificationScheduler implements ReminderScheduler {
       notificationDetails: _details(),
       androidScheduleMode: await _scheduleMode(),
       payload: request.payload,
+      matchDateTimeComponents: switch (request.repeat) {
+        Repeat.none => null,
+        Repeat.daily => DateTimeComponents.time,
+        Repeat.weekly => DateTimeComponents.dayOfWeekAndTime,
+        Repeat.monthly => DateTimeComponents.dayOfMonthAndTime,
+        Repeat.yearly => DateTimeComponents.dateAndTime,
+      },
     );
   }
 
@@ -260,6 +306,18 @@ class FakeReminderScheduler implements ReminderScheduler {
 
   @override
   Future<bool> requestPermission() async => true;
+
+  bool onTimeAllowed = true;
+  int onTimeRequests = 0;
+
+  @override
+  Future<bool> canRemindOnTime() async => onTimeAllowed;
+
+  @override
+  Future<bool> requestOnTimeReminders() async {
+    onTimeRequests++;
+    return onTimeAllowed = true;
+  }
 
   @override
   Future<void> schedule(ReminderRequest request) async {

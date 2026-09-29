@@ -119,6 +119,5 @@ lib/
 
 ## Before publishing
 
-Change the placeholder app ID `com.example.keepall` (Android `build.gradle.kts`,
-iOS/macOS bundle identifier, Linux `APPLICATION_ID`) to your own reverse
-domain, e.g. `com.yourname.keepall`.
+The app ID is `com.keepall.app` (Android `build.gradle.kts`, iOS/macOS bundle
+identifier, Linux `APPLICATION_ID`). Never change it after the first Play upload.

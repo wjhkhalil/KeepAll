@@ -1800,17 +1800,41 @@ abstract class AppLocalizations {
   /// **'The purchase date can\'t be in the future.'**
   String get receiptDateFuture;
 
-  /// No description provided for @homeRecentTasks.
+  /// No description provided for @homeUpcomingTasks.
   ///
   /// In en, this message translates to:
-  /// **'Recent tasks'**
-  String get homeRecentTasks;
+  /// **'Upcoming tasks'**
+  String get homeUpcomingTasks;
 
   /// No description provided for @taskPastDateTime.
   ///
   /// In en, this message translates to:
   /// **'The date and time cannot be in the past.'**
   String get taskPastDateTime;
+
+  /// No description provided for @reminderOnTimeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Allow reminders on time'**
+  String get reminderOnTimeTitle;
+
+  /// No description provided for @reminderOnTimeBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Android may hold reminders back while your phone is asleep. To get them exactly on time, even when KeepAll is closed, turn on “Alarms & reminders” for KeepAll on the next screen.'**
+  String get reminderOnTimeBody;
+
+  /// No description provided for @reminderOnTimeAllow.
+  ///
+  /// In en, this message translates to:
+  /// **'Allow'**
+  String get reminderOnTimeAllow;
+
+  /// No description provided for @reminderOnTimeLater.
+  ///
+  /// In en, this message translates to:
+  /// **'Not now'**
+  String get reminderOnTimeLater;
 }
 
 class _AppLocalizationsDelegate

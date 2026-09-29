@@ -38,6 +38,20 @@ void main() {
     expect(reloaded.tasks.single.title, 'Dentist');
   });
 
+  test('home shows open tasks by due time, not by when they were added', () async {
+    // Added first, but due latest today.
+    await data.saveTask(data.newTask(title: 'Evening walk', dueAt: DateTime(2100, 9, 23, 19), hasTime: true));
+    await data.saveTask(data.newTask(title: 'No date'));
+    await data.saveTask(data.newTask(title: 'Tomorrow call', dueAt: DateTime(2100, 9, 24, 9), hasTime: true));
+    final done = data.newTask(title: 'Done already', dueAt: DateTime(2100, 9, 23, 8), hasTime: true);
+    await data.saveTask(done);
+    await data.completeTask(done.id);
+    await data.saveTask(data.newTask(title: 'Late lunch', dueAt: DateTime(2100, 9, 23, 13), hasTime: true));
+    await data.saveTask(data.newTask(title: 'Missed', dueAt: DateTime(2100, 9, 22, 9), hasTime: true));
+
+    expect(data.upcomingTasks.map((t) => t.title), ['Missed', 'Late lunch', 'Evening walk']);
+  });
+
   test('reminders are rescheduled on load (e.g. after restart)', () async {
     await data.saveTask(data.newTask(title: 'A', dueAt: DateTime(2100, 9, 25), remind: true));
     final freshScheduler = FakeReminderScheduler();
@@ -88,6 +102,84 @@ void main() {
       ReminderResponse(payload: 'task:${t.id}', action: ReminderScheduler.actionSnooze),
     );
     expect(scheduler.scheduled[t.notificationId]!.when, now.add(const Duration(minutes: 10)));
+  });
+
+  test('a repeating reminder keeps coming when the task is not ticked', () async {
+    // Yesterday's pills were never ticked off. The phone must still remind
+    // every day by itself, even if the app is never opened again.
+    final t = data.newTask(
+      title: 'Pills',
+      dueAt: DateTime(2100, 9, 22, 8),
+      hasTime: true,
+      remind: true,
+      repeat: Repeat.daily,
+    );
+    await data.saveTask(t);
+    final r = scheduler.scheduled[t.notificationId]!;
+    expect(r.when, DateTime(2100, 9, 24, 8));
+    expect(r.repeat, Repeat.daily);
+    // The text must not show yesterday's stale date on every day.
+    expect(r.body, 'Every day · 08:00');
+
+    final weekly = data.newTask(title: 'Bins', dueAt: DateTime(2100, 9, 16), remind: true, repeat: Repeat.weekly);
+    await data.saveTask(weekly);
+    expect(scheduler.scheduled[weekly.notificationId]!.when, DateTime(2100, 9, 30, 9));
+    expect(scheduler.scheduled[weekly.notificationId]!.repeat, Repeat.weekly);
+
+    // A one-off task that was missed stays quiet.
+    final once = data.newTask(title: 'Once', dueAt: DateTime(2100, 9, 22, 8), hasTime: true, remind: true);
+    await data.saveTask(once);
+    expect(scheduler.scheduled.containsKey(once.notificationId), isFalse);
+  });
+
+  test('the phone only repeats a reminder when that cannot ring too early or skip a month', () async {
+    Future<ReminderRequest> saved(DateTime due, Repeat repeat) async {
+      final t = data.newTask(title: 'T', dueAt: due, hasTime: true, remind: true, repeat: repeat);
+      await data.saveTask(t);
+      return scheduler.scheduled[t.notificationId]!;
+    }
+
+    // Starts in 3 weeks: the phone ignores the start date and would ring
+    // tomorrow already, so the first one is a single reminder.
+    final later = await saved(DateTime(2100, 10, 14, 8), Repeat.daily);
+    expect(later.when, DateTime(2100, 10, 14, 8));
+    expect(later.repeat, Repeat.none);
+    expect(later.body, formatDateTime(DateTime(2100, 10, 14, 8)));
+
+    // Starts tomorrow: safe to let the phone repeat it.
+    expect((await saved(DateTime(2100, 9, 24, 8), Repeat.daily)).repeat, Repeat.daily);
+    // Every month on the 31st: the phone would skip 30-day months.
+    expect((await saved(DateTime(2100, 8, 31, 8), Repeat.monthly)).repeat, Repeat.none);
+    expect((await saved(DateTime(2100, 9, 15, 8), Repeat.monthly)).repeat, Repeat.monthly);
+  });
+
+  test('snoozing a repeating reminder keeps the daily one', () async {
+    final t = data.newTask(
+      title: 'Pills',
+      dueAt: DateTime(2100, 9, 23, 9, 55),
+      hasTime: true,
+      remind: true,
+      repeat: Repeat.daily,
+    );
+    await data.saveTask(t);
+    await data.handleReminderResponse(
+      ReminderResponse(payload: 'task:${t.id}', action: ReminderScheduler.actionSnooze),
+    );
+    final snooze = scheduler.scheduled[t.snoozeNotificationId]!;
+    expect(snooze.when, now.add(const Duration(minutes: 10)));
+    expect(snooze.repeat, Repeat.none);
+    expect(scheduler.scheduled[t.notificationId]!.when, DateTime(2100, 9, 24, 9, 55));
+
+    await data.deleteTask(t.id);
+    expect(scheduler.scheduled, isEmpty);
+  });
+
+  test('Done on a repeating all-day reminder completes today, not only the missed day', () async {
+    final t = data.newTask(title: 'Walk dog', dueAt: DateTime(2100, 9, 21), remind: true, repeat: Repeat.daily);
+    await data.saveTask(t);
+    // Today's 09:00 reminder fired; the user presses Done on it.
+    await data.handleReminderResponse(ReminderResponse(payload: 'task:${t.id}', action: ReminderScheduler.actionDone));
+    expect(data.taskById(t.id)!.dueAt, DateTime(2100, 9, 24));
   });
 
   test('tapping a notification returns the task to open; Done completes it', () async {

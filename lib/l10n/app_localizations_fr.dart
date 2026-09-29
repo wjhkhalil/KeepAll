@@ -1030,9 +1030,22 @@ class AppLocalizationsFr extends AppLocalizations {
       'La date d\'achat ne peut pas être dans le futur.';
 
   @override
-  String get homeRecentTasks => 'Tâches récentes';
+  String get homeUpcomingTasks => 'Tâches à venir';
 
   @override
   String get taskPastDateTime =>
       'La date et l\'heure ne peuvent pas être dans le passé.';
+
+  @override
+  String get reminderOnTimeTitle => 'Autoriser les rappels à l’heure';
+
+  @override
+  String get reminderOnTimeBody =>
+      'Android peut retarder les rappels pendant que votre téléphone est en veille. Pour les recevoir à l’heure exacte, même quand KeepAll est fermé, activez « Alarmes et rappels » pour KeepAll sur l’écran suivant.';
+
+  @override
+  String get reminderOnTimeAllow => 'Autoriser';
+
+  @override
+  String get reminderOnTimeLater => 'Plus tard';
 }

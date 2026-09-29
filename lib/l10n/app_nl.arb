@@ -282,6 +282,10 @@
   "currencyNoResults": "Geen valuta gevonden",
   "currencyMore": "Meer valuta",
   "receiptDateFuture": "De aankoopdatum kan niet in de toekomst liggen.",
-  "homeRecentTasks": "Recente taken",
-  "taskPastDateTime": "Datum en tijd mogen niet in het verleden liggen."
+  "homeUpcomingTasks": "Komende taken",
+  "taskPastDateTime": "Datum en tijd mogen niet in het verleden liggen.",
+  "reminderOnTimeTitle": "Herinneringen op tijd toestaan",
+  "reminderOnTimeBody": "Android kan herinneringen uitstellen terwijl je telefoon slaapt. Zet op het volgende scherm ‘Wekkers en herinneringen’ aan voor KeepAll om ze precies op tijd te krijgen, ook als KeepAll gesloten is.",
+  "reminderOnTimeAllow": "Toestaan",
+  "reminderOnTimeLater": "Niet nu"
 }

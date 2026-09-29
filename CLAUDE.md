@@ -32,8 +32,8 @@ The app is called **"Keepall"** (renamed from the working title "MyLife").
 Done everywhere: all 7 ARB files (`appTitle`, welcome text, etc.), Android
 label, iOS/macOS display & product names, Linux/Windows window titles and
 binary name (`keepall`), web title, Dart package (`keepall` — imports are
-`package:keepall/...`), app class `KeepallApp`, placeholder app ids
-`com.example.keepall` (Kotlin package moved to `com/example/keepall`).
+`package:keepall/...`), app class `KeepallApp`, app id
+`com.keepall.app` (owner's chosen app id; Kotlin package in `com/keepall/app`).
 The project **folder** is still `Documents/my_life` (harmless).
 Compatibility kept on purpose (don't remove): backups are `keepall.json` /
 `"app":"Keepall"` but old `mylife.json` / `"MyLife"` backups still restore;
@@ -48,7 +48,9 @@ cards (tick, cart, receipt, passport, bell) between two leaves, on cream
 `python3 tool/generate_icons.py` (needs Pillow) makes **every** icon from it:
 Android legacy + adaptive icon (foreground picture 74 of 108 dp so it fits
 round masks, background colour in `values/ic_launcher_background.xml`),
-Android ≤11 splash logo (`drawable-*/launch_logo.png`), iOS AppIcon (no
+Android ≤11 splash logo (`drawable-*/launch_logo.png`), white status-bar
+notification icon (`drawable-*/ic_notification.png`, a house with a tick,
+drawn by the script) + `raw/keep.xml` so release shrinking keeps it, iOS AppIcon (no
 alpha) + LaunchImage, macOS rounded icons, web favicon/icons/maskable,
 Windows `.ico`, and the in-app `assets/Icon/app_logo.png`. Re-run it after
 replacing the master; don't edit the generated PNGs by hand.
@@ -89,10 +91,18 @@ asset.
 flutter pub get
 flutter gen-l10n          # regenerate translations (also runs on build)
 flutter analyze           # must be "No issues found!"
-flutter test              # 99 tests, all must pass
+flutter test              # 105 tests, all must pass
 flutter build linux --debug && ./build/linux/x64/debug/bundle/keepall
 flutter run               # on a phone/emulator
+flutter build appbundle   # Play Store release (.aab)
 ```
+
+**Release signing:** `android/app/build.gradle.kts` reads
+`android/key.properties` (storePassword, keyPassword, keyAlias, storeFile →
+the owner's upload `.jks`). Both are git-ignored and must never be committed.
+Without key.properties the release build falls back to the debug key (Play
+rejects it). Google Play App Signing holds the real app key; a lost upload
+key can be reset through Play support.
 
 Dependencies (pubspec): `provider` (state), `intl` + `flutter_localizations`,
 `path_provider`, `shared_preferences` (settings), `flutter_local_notifications`
@@ -208,8 +218,11 @@ pastel fill + outline + check when selected) → name (optional) → currency
 (popular list + "More currencies" picker; default guessed from phone region).
 
 **Home:** greeting "Good morning, Sara ☀️" (☀️/🌤️/🌙 by time) + weekday + long
-date + small ☁️ illustration (not in Simple). "☀️ Your day" card listing up to
-3–4 tasks due today/overdue with round animated checks and "See all →".
+date + small ☁️ illustration (not in Simple). "Upcoming tasks" card
+(`AppData.upcomingTasks`): the next 3 **open** tasks by **due time**
+(overdue first, no-date last — owner asked for timing, not creation order),
+each row with round animated check and "Today 13:00"/"Tomorrow"/"Overdue",
+plus "See all →". Hidden when there are no open tasks.
 Then summary cards (2-column grid, 1 column in Simple or large text):
 - Student: Homework, Next exam (countdown), Shopping, Spending (this month per currency)
 - Everyday: Shopping, Receipts, Documents (highlight when expiring ≤30 days), Home tasks (due this week), Subscriptions, Bills & documents
@@ -360,10 +373,26 @@ whole app pastel/rainbow.
   silently does nothing. Tests use `FakeReminderScheduler`.
 - On every start (and after restore/language change) all pending
   notifications are replaced from stored data (`resyncReminders`).
+- **Repeating tasks:** the phone repeats the reminder by itself
+  (`ReminderRequest.repeat` → `matchDateTimeComponents`), so daily medicine
+  keeps reminding even if nobody ticks the task or opens the app (before,
+  one ignored reminder stopped all later ones). `AppData.remindersFor`
+  always schedules the next occurrence after now. The phone ignores the start
+  date, so it only takes over once the start is ≤1 period away; monthly on
+  the 29th–31st (and yearly on 29 Feb) stay single reminders. A snooze of a
+  repeating task uses a second id (`Task.snoozeNotificationId`) so the daily
+  one survives. "Done" from a reminder uses `completeTask(includeToday: true)`.
 - Payloads: `task:<id>` / `doc:<id>`. Task reminders have actions **Snooze 10
   min** and **Done** (open the app, handled in `HomeShell._onReminder`).
   Tapping opens the task/document editor; launch-from-notification handled too.
-- Android: exact alarms if permitted, else inexact. Manifest has
+- Android: exact alarms if permitted, else inexact. On Android 14+ exact
+  alarms are **off by default**; inexact reminders were held back while the
+  phone slept and only appeared when the app was opened (owner's report).
+  So turning on a reminder calls `ensureReminderPermission()` (widgets.dart):
+  notification permission, then — if `canRemindOnTime()` is false — a dialog
+  that opens the system "Alarms & reminders" setting and resyncs reminders
+  once allowed. Some phone brands (Xiaomi, Oppo, Vivo, Samsung) may still
+  delay them unless battery optimisation is off for the app. Manifest has
   POST_NOTIFICATIONS, RECEIVE_BOOT_COMPLETED, SCHEDULE_EXACT_ALARM, VIBRATE,
   the plugin's receivers (incl. boot receiver), core library desugaring
   (Java 17) in `android/app/build.gradle.kts`, and a `tel:` DIAL query.
@@ -371,7 +400,7 @@ whole app pastel/rainbow.
 
 ---
 
-## 12. Tests (99, all passing)
+## 12. Tests (105, all passing)
 
 - `core_test.dart` – money (all currencies, decimals, parsing, search, region), dates, models.
 - `app_data_test.dart` – tasks/reminders/snooze/repeat/lists/receipts/corrupt data.
@@ -426,7 +455,7 @@ Open / next:
    No Android 13 "themed" (monochrome) icon yet.
 2. **Test on a real Android/iOS device**: reminders (incl. after reboot),
    notification actions, camera, backup save to Files/Drive, restore, emergency call.
-3. Replace placeholder app id `com.example.keepall` with the owner's own domain before publishing.
+3. App id is `com.keepall.app` (final — never change after the first Play upload). Play Store only; no App Store release planned.
 4. Native-speaker review of translations (e.g. fr/it use the same word for Undo/Cancel; pl "Wydatki – {month}").
 5. Not built (by decision/limits): home-screen widgets (need native
    Kotlin/Swift + device testing), live shared lists (needs a server —

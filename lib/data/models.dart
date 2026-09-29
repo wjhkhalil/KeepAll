@@ -64,6 +64,10 @@ class Task {
 
   /// Stable integer id for the OS notification scheduler.
   final int notificationId;
+
+  /// Id of a snoozed reminder of a repeating task. It is separate so the
+  /// snooze doesn't replace the everyday reminder the phone repeats itself.
+  int get snoozeNotificationId => notificationId ^ 0x40000000;
   final String title;
   final String notes;
   final TaskCategory category;

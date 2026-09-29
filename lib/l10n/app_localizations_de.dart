@@ -1030,9 +1030,22 @@ class AppLocalizationsDe extends AppLocalizations {
       'Das Kaufdatum darf nicht in der Zukunft liegen.';
 
   @override
-  String get homeRecentTasks => 'Neueste Aufgaben';
+  String get homeUpcomingTasks => 'Nächste Aufgaben';
 
   @override
   String get taskPastDateTime =>
       'Datum und Uhrzeit dürfen nicht in der Vergangenheit liegen.';
+
+  @override
+  String get reminderOnTimeTitle => 'Erinnerungen pünktlich erlauben';
+
+  @override
+  String get reminderOnTimeBody =>
+      'Android kann Erinnerungen zurückhalten, während dein Handy ruht. Damit sie pünktlich kommen, auch wenn KeepAll geschlossen ist, aktiviere auf dem nächsten Bildschirm „Wecker & Erinnerungen“ für KeepAll.';
+
+  @override
+  String get reminderOnTimeAllow => 'Erlauben';
+
+  @override
+  String get reminderOnTimeLater => 'Nicht jetzt';
 }

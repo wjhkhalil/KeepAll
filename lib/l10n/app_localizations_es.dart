@@ -1032,9 +1032,22 @@ class AppLocalizationsEs extends AppLocalizations {
   String get receiptDateFuture => 'La fecha de compra no puede ser futura.';
 
   @override
-  String get homeRecentTasks => 'Tareas recientes';
+  String get homeUpcomingTasks => 'Próximas tareas';
 
   @override
   String get taskPastDateTime =>
       'La fecha y la hora no pueden ser en el pasado.';
+
+  @override
+  String get reminderOnTimeTitle => 'Permitir recordatorios puntuales';
+
+  @override
+  String get reminderOnTimeBody =>
+      'Android puede retrasar los recordatorios mientras el móvil está en reposo. Para recibirlos a la hora exacta, aunque KeepAll esté cerrada, activa «Alarmas y recordatorios» para KeepAll en la siguiente pantalla.';
+
+  @override
+  String get reminderOnTimeAllow => 'Permitir';
+
+  @override
+  String get reminderOnTimeLater => 'Ahora no';
 }

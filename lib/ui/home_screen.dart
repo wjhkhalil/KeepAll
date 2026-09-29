@@ -186,7 +186,7 @@ class HomeScreen extends StatelessWidget {
               _EmergencyCard(settings: settings, onSetUp: () => onOpenTab(AppTab.more)),
               const SizedBox(height: 14),
             ],
-            if (data.recentTasks.isNotEmpty) ...[
+            if (data.upcomingTasks.isNotEmpty) ...[
               _YourDayCard(onSeeAll: () => onOpenTasks(null)),
               const SizedBox(height: 14),
             ],
@@ -213,7 +213,7 @@ class HomeScreen extends StatelessWidget {
   }
 }
 
-/// "Recent tasks" – the 2–3 most recently created tasks.
+/// "Upcoming tasks" – the next open tasks by due time.
 class _YourDayCard extends StatelessWidget {
   const _YourDayCard({required this.onSeeAll});
 
@@ -224,8 +224,7 @@ class _YourDayCard extends StatelessWidget {
     final l = context.l10n;
     final theme = Theme.of(context);
     final c = context.colors;
-    final recent = context.watch<AppData>().recentTasks;
-    final shown = recent.take(3).toList();
+    final shown = context.watch<AppData>().upcomingTasks;
 
     return SoftCard(
       padding: const EdgeInsets.fromLTRB(18, 18, 10, 10),
@@ -234,9 +233,9 @@ class _YourDayCard extends StatelessWidget {
         children: [
           Row(
             children: [
-              IconBubble(icon: Icons.history_rounded, color: c.lavender, size: 40),
+              IconBubble(icon: Icons.schedule_rounded, color: c.lavender, size: 40),
               const SizedBox(width: 12),
-              Expanded(child: Semantics(header: true, child: Text(l.homeRecentTasks, style: theme.textTheme.titleLarge))),
+              Expanded(child: Semantics(header: true, child: Text(l.homeUpcomingTasks, style: theme.textTheme.titleLarge))),
             ],
           ),
           const SizedBox(height: 10),
@@ -282,13 +281,13 @@ class _DayTaskRow extends StatelessWidget {
               child: Text(task.title, style: theme.textTheme.bodyLarge, maxLines: 1, overflow: TextOverflow.ellipsis),
             ),
           ),
-          if (task.dueAt != null && (task.hasTime || overdue))
+          if (task.dueAt != null)
             // May shrink with "…" at very large text rather than overflow.
             Flexible(
               child: Padding(
                 padding: const EdgeInsets.only(right: 8, left: 4),
                 child: Text(
-                  overdue ? l.taskOverdue : formatTime(task.dueAt!),
+                  overdue ? l.taskOverdue : dueText(l, task, now),
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   style: theme.textTheme.labelLarge?.copyWith(color: overdue ? c.danger : c.textMuted),

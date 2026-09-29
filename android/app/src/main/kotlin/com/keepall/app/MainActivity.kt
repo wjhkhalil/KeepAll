@@ -1,4 +1,4 @@
-package com.example.keepall
+package com.keepall.app
 
 import io.flutter.embedding.android.FlutterActivity
 

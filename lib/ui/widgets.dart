@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../state/app_data.dart';
 import '../state/settings.dart';
 import 'labels.dart';
 
@@ -20,6 +21,38 @@ Future<bool> confirmDeleteIfNeeded(BuildContext context, String name) async {
     ),
   );
   return result ?? false;
+}
+
+/// Asks for everything a reminder needs when the user turns one on: the
+/// notification permission and, on Android 14+, "Alarms & reminders".
+/// Without the second one Android holds reminders back while the phone
+/// sleeps, so they only appeared once the app was opened again.
+Future<void> ensureReminderPermission(BuildContext context) async {
+  final data = context.read<AppData>();
+  final scheduler = data.scheduler;
+  final l = context.l10n;
+  final granted = await scheduler.requestPermission();
+  if (!context.mounted) return;
+  if (!granted) {
+    showMessage(context, l.reminderPermissionDenied);
+    return;
+  }
+  if (await scheduler.canRemindOnTime() || !context.mounted) return;
+  final allow = await showDialog<bool>(
+    context: context,
+    builder: (ctx) => AlertDialog(
+      icon: const Icon(Icons.alarm_rounded),
+      title: Text(l.reminderOnTimeTitle),
+      content: Text(l.reminderOnTimeBody),
+      actions: [
+        TextButton(onPressed: () => Navigator.pop(ctx, false), child: Text(l.reminderOnTimeLater)),
+        FilledButton(onPressed: () => Navigator.pop(ctx, true), child: Text(l.reminderOnTimeAllow)),
+      ],
+    ),
+  );
+  if (allow != true) return;
+  // Reminders scheduled before were inexact; schedule them again on time.
+  if (await scheduler.requestOnTimeReminders()) await data.resyncReminders();
 }
 
 ScaffoldFeatureController<SnackBar, SnackBarClosedReason> showMessage(

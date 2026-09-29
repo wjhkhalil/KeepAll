@@ -83,10 +83,7 @@ class _DocumentEditorScreenState extends State<DocumentEditorScreen> {
     );
     if (picked == null || !mounted) return;
     setState(() => _expires = picked);
-    if (_remindDays > 0) {
-      final granted = await _data.scheduler.requestPermission();
-      if (!granted && mounted) showMessage(context, context.l10n.reminderPermissionDenied);
-    }
+    if (_remindDays > 0) await ensureReminderPermission(context);
   }
 
   Future<void> _save() async {

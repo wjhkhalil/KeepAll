@@ -1031,9 +1031,22 @@ class AppLocalizationsIt extends AppLocalizations {
       'La data di acquisto non può essere nel futuro.';
 
   @override
-  String get homeRecentTasks => 'Attività recenti';
+  String get homeUpcomingTasks => 'Prossime attività';
 
   @override
   String get taskPastDateTime =>
       'La data e l\'ora non possono essere nel passato.';
+
+  @override
+  String get reminderOnTimeTitle => 'Consenti promemoria puntuali';
+
+  @override
+  String get reminderOnTimeBody =>
+      'Android può ritardare i promemoria mentre il telefono è in standby. Per riceverli all’ora esatta, anche con KeepAll chiusa, attiva «Sveglie e promemoria» per KeepAll nella schermata successiva.';
+
+  @override
+  String get reminderOnTimeAllow => 'Consenti';
+
+  @override
+  String get reminderOnTimeLater => 'Non ora';
 }

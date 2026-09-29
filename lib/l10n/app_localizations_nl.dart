@@ -1028,9 +1028,22 @@ class AppLocalizationsNl extends AppLocalizations {
       'De aankoopdatum kan niet in de toekomst liggen.';
 
   @override
-  String get homeRecentTasks => 'Recente taken';
+  String get homeUpcomingTasks => 'Komende taken';
 
   @override
   String get taskPastDateTime =>
       'Datum en tijd mogen niet in het verleden liggen.';
+
+  @override
+  String get reminderOnTimeTitle => 'Herinneringen op tijd toestaan';
+
+  @override
+  String get reminderOnTimeBody =>
+      'Android kan herinneringen uitstellen terwijl je telefoon slaapt. Zet op het volgende scherm ‘Wekkers en herinneringen’ aan voor KeepAll om ze precies op tijd te krijgen, ook als KeepAll gesloten is.';
+
+  @override
+  String get reminderOnTimeAllow => 'Toestaan';
+
+  @override
+  String get reminderOnTimeLater => 'Niet nu';
 }

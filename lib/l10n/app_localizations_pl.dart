@@ -1053,8 +1053,21 @@ class AppLocalizationsPl extends AppLocalizations {
   String get receiptDateFuture => 'Data zakupu nie może być w przyszłości.';
 
   @override
-  String get homeRecentTasks => 'Ostatnie zadania';
+  String get homeUpcomingTasks => 'Nadchodzące zadania';
 
   @override
   String get taskPastDateTime => 'Data i godzina nie mogą być w przeszłości.';
+
+  @override
+  String get reminderOnTimeTitle => 'Zezwól na punktualne przypomnienia';
+
+  @override
+  String get reminderOnTimeBody =>
+      'Android może wstrzymywać przypomnienia, gdy telefon jest uśpiony. Aby dostawać je dokładnie na czas, nawet gdy KeepAll jest zamknięta, włącz „Alarmy i przypomnienia” dla KeepAll na następnym ekranie.';
+
+  @override
+  String get reminderOnTimeAllow => 'Zezwól';
+
+  @override
+  String get reminderOnTimeLater => 'Nie teraz';
 }

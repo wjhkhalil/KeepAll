@@ -87,9 +87,7 @@ class _TaskEditorScreenState extends State<TaskEditorScreen> {
       _remind = value;
       if (value) _date ??= dateOnly(DateTime.now());
     });
-    if (!value) return;
-    final granted = await context.read<AppData>().scheduler.requestPermission();
-    if (!granted && mounted) showMessage(context, context.l10n.reminderPermissionDenied);
+    if (value) await ensureReminderPermission(context);
   }
 
   Future<void> _save() async {

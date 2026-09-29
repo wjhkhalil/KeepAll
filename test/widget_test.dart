@@ -13,13 +13,17 @@ import 'package:keepall/ui/design.dart';
 import 'package:keepall/ui/theme.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-Future<(Settings, AppData)> _setUp(WidgetTester tester, {Map<String, Object> prefs = const {}}) async {
+Future<(Settings, AppData)> _setUp(
+  WidgetTester tester, {
+  Map<String, Object> prefs = const {},
+  ReminderScheduler? scheduler,
+}) async {
   SharedPreferences.setMockInitialValues(prefs);
   late Settings settings;
   late AppData data;
   await tester.runAsync(() async {
     settings = await Settings.load();
-    data = AppData(store: MemoryDataStore(), scheduler: FakeReminderScheduler());
+    data = AppData(store: MemoryDataStore(), scheduler: scheduler ?? FakeReminderScheduler());
     await data.load();
   });
   await tester.pumpWidget(KeepallApp(settings: settings, data: data));
@@ -58,6 +62,32 @@ void main() {
     expect(find.textContaining('Maria'), findsOneWidget);
     expect(find.text('Medicine'), findsOneWidget);
     expect(find.text('Emergency contact'), findsOneWidget);
+  });
+
+  testWidgets('turning on a reminder asks for on-time reminders when the phone blocks them', (tester) async {
+    final scheduler = FakeReminderScheduler()..onTimeAllowed = false;
+    await _setUp(tester, prefs: {'onboarded': true, 'mode': 'everyday'}, scheduler: scheduler);
+
+    await tester.tap(find.text('Tasks').last);
+    await tester.pumpAndSettle();
+    await tester.tap(find.byTooltip('New task'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Remind me'));
+    await tester.pumpAndSettle();
+
+    expect(find.text('Allow reminders on time'), findsOneWidget);
+    await tester.tap(find.text('Allow'));
+    await tester.pumpAndSettle();
+    expect(scheduler.onTimeRequests, 1);
+    expect(scheduler.onTimeAllowed, isTrue);
+
+    // Already allowed: no second question.
+    await tester.tap(find.text('Remind me'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Remind me'));
+    await tester.pumpAndSettle();
+    expect(find.text('Allow reminders on time'), findsNothing);
+    expect(scheduler.onTimeRequests, 1);
   });
 
   testWidgets('add a task from the Tasks tab', (tester) async {

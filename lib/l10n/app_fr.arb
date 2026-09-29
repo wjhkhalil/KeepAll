@@ -282,6 +282,10 @@
   "currencyNoResults": "Aucune devise trouvée",
   "currencyMore": "Autres devises",
   "receiptDateFuture": "La date d'achat ne peut pas être dans le futur.",
-  "homeRecentTasks": "Tâches récentes",
-  "taskPastDateTime": "La date et l'heure ne peuvent pas être dans le passé."
+  "homeUpcomingTasks": "Tâches à venir",
+  "taskPastDateTime": "La date et l'heure ne peuvent pas être dans le passé.",
+  "reminderOnTimeTitle": "Autoriser les rappels à l’heure",
+  "reminderOnTimeBody": "Android peut retarder les rappels pendant que votre téléphone est en veille. Pour les recevoir à l’heure exacte, même quand KeepAll est fermé, activez « Alarmes et rappels » pour KeepAll sur l’écran suivant.",
+  "reminderOnTimeAllow": "Autoriser",
+  "reminderOnTimeLater": "Plus tard"
 }
