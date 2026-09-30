@@ -220,6 +220,16 @@ class AppLocalizationsNl extends AppLocalizations {
   String get callFailed => 'Kon geen gesprek starten op dit apparaat.';
 
   @override
+  String get privacyPolicy => 'Privacybeleid';
+
+  @override
+  String get privacyPolicyDesc => 'Opent in je webbrowser';
+
+  @override
+  String get linkFailed =>
+      'Kon de link niet openen. Controleer je internetverbinding.';
+
+  @override
   String get tasksTitle => 'Taken';
 
   @override

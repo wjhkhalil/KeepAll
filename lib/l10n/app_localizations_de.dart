@@ -222,6 +222,16 @@ class AppLocalizationsDe extends AppLocalizations {
       'Auf diesem Gerät konnte kein Anruf gestartet werden.';
 
   @override
+  String get privacyPolicy => 'Datenschutzerklärung';
+
+  @override
+  String get privacyPolicyDesc => 'Wird im Webbrowser geöffnet';
+
+  @override
+  String get linkFailed =>
+      'Der Link konnte nicht geöffnet werden. Bitte prüfe deine Internetverbindung.';
+
+  @override
   String get tasksTitle => 'Aufgaben';
 
   @override

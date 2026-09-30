@@ -119,5 +119,5 @@ lib/
 
 ## Before publishing
 
-The app ID is `com.lifekeeper.app` (Android `build.gradle.kts`, iOS/macOS bundle
+The app ID is `com.lifekeep.app` (Android `build.gradle.kts`, iOS/macOS bundle
 identifier, Linux `APPLICATION_ID`). Never change it after the first Play upload.

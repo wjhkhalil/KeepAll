@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../state/app_data.dart';
 import '../state/settings.dart';
@@ -11,11 +12,22 @@ import 'labels.dart';
 import 'shell.dart';
 import 'widgets.dart';
 
+/// The owner's published privacy policy (required by Google Play).
+const privacyPolicyUrl = 'https://www.freeprivacypolicy.com/live/4ce57630-abc0-4fd4-81dd-63c0603e1a5b';
+
 class MoreScreen extends StatelessWidget {
   const MoreScreen({super.key, required this.onOpen});
 
   /// Opens a section (documents, lists, receipts) as its own page or tab.
   final void Function(AppTab tab) onOpen;
+
+  /// Opens the policy in the phone's browser rather than inside the app, so
+  /// people can read it in a familiar place and come back with Back.
+  Future<void> _openPrivacyPolicy(BuildContext context) async {
+    final ok = await launchUrl(Uri.parse(privacyPolicyUrl), mode: LaunchMode.externalApplication)
+        .catchError((_) => false);
+    if (!ok && context.mounted) showMessage(context, context.l10n.linkFailed);
+  }
 
   Future<void> _editName(BuildContext context, Settings settings) async {
     final l = context.l10n;
@@ -315,6 +327,14 @@ class MoreScreen extends StatelessWidget {
                 title: Text(l.appTitle),
                 subtitle: Text('${l.aboutBody}\n${l.aboutFormats}'),
                 isThreeLine: true,
+              ),
+              ListTile(
+                key: const Key('privacy-policy'),
+                leading: IconBubble(icon: Icons.privacy_tip_rounded, color: c.sage, size: 38),
+                title: Text(l.privacyPolicy),
+                subtitle: Text(l.privacyPolicyDesc),
+                trailing: const Icon(Icons.open_in_new_rounded),
+                onTap: () => _openPrivacyPolicy(context),
               ),
           ]),
         ],

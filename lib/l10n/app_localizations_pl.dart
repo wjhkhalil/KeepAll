@@ -233,6 +233,16 @@ class AppLocalizationsPl extends AppLocalizations {
   String get callFailed => 'Nie udało się zadzwonić z tego urządzenia.';
 
   @override
+  String get privacyPolicy => 'Polityka prywatności';
+
+  @override
+  String get privacyPolicyDesc => 'Otwiera się w przeglądarce';
+
+  @override
+  String get linkFailed =>
+      'Nie udało się otworzyć linku. Sprawdź połączenie z internetem.';
+
+  @override
   String get tasksTitle => 'Zadania';
 
   @override

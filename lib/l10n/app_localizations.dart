@@ -396,6 +396,24 @@ abstract class AppLocalizations {
   /// **'Couldn\'t start a call on this device.'**
   String get callFailed;
 
+  /// No description provided for @privacyPolicy.
+  ///
+  /// In en, this message translates to:
+  /// **'Privacy policy'**
+  String get privacyPolicy;
+
+  /// No description provided for @privacyPolicyDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Opens in your web browser'**
+  String get privacyPolicyDesc;
+
+  /// No description provided for @linkFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t open the link. Please check your internet connection.'**
+  String get linkFailed;
+
   /// No description provided for @tasksTitle.
   ///
   /// In en, this message translates to:

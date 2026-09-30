@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:lifekeeper/app.dart';
@@ -10,6 +11,7 @@ import 'package:lifekeeper/services/reminder_scheduler.dart';
 import 'package:lifekeeper/state/app_data.dart';
 import 'package:lifekeeper/state/settings.dart';
 import 'package:lifekeeper/ui/design.dart';
+import 'package:lifekeeper/ui/more_screen.dart';
 import 'package:lifekeeper/ui/theme.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -271,6 +273,29 @@ void main() {
     expect(doc.title, 'Passport');
     expect(doc.type, DocumentType.passport);
     expect(find.textContaining('No expiry date'), findsOneWidget);
+  });
+
+  testWidgets('More → About opens the privacy policy in the browser', (tester) async {
+    await _setUp(tester, prefs: {'onboarded': true});
+    final opened = <Object?>[];
+    const channel = MethodChannel('plugins.flutter.io/url_launcher');
+    tester.binding.defaultBinaryMessenger.setMockMethodCallHandler(channel, (call) async {
+      opened.add(call.arguments is Map ? (call.arguments as Map)['url'] : call.arguments);
+      return true;
+    });
+    addTearDown(() => tester.binding.defaultBinaryMessenger.setMockMethodCallHandler(channel, null));
+
+    await tester.tap(find.text('More').last);
+    await tester.pumpAndSettle();
+    final tile = find.byKey(const Key('privacy-policy'));
+    await tester.scrollUntilVisible(tile, 200);
+    // Scroll to the very end so the floating tab bar doesn't cover the row.
+    await tester.drag(find.byType(Scrollable).last, const Offset(0, -600));
+    await tester.pumpAndSettle();
+    expect(find.text('Privacy policy'), findsOneWidget);
+    await tester.tap(tile);
+    await tester.pumpAndSettle();
+    expect(opened, [privacyPolicyUrl]);
   });
 
   testWidgets('switching language to German translates the app and its formats', (tester) async {

@@ -221,6 +221,16 @@ class AppLocalizationsEs extends AppLocalizations {
       'No se ha podido iniciar la llamada en este dispositivo.';
 
   @override
+  String get privacyPolicy => 'Política de privacidad';
+
+  @override
+  String get privacyPolicyDesc => 'Se abre en tu navegador';
+
+  @override
+  String get linkFailed =>
+      'No se ha podido abrir el enlace. Comprueba tu conexión a internet.';
+
+  @override
   String get tasksTitle => 'Tareas';
 
   @override

@@ -222,6 +222,16 @@ class AppLocalizationsIt extends AppLocalizations {
       'Non è stato possibile avviare la chiamata su questo dispositivo.';
 
   @override
+  String get privacyPolicy => 'Informativa sulla privacy';
+
+  @override
+  String get privacyPolicyDesc => 'Si apre nel browser';
+
+  @override
+  String get linkFailed =>
+      'Impossibile aprire il link. Controlla la connessione a internet.';
+
+  @override
   String get tasksTitle => 'Attività';
 
   @override

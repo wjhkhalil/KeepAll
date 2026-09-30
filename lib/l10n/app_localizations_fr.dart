@@ -220,6 +220,16 @@ class AppLocalizationsFr extends AppLocalizations {
   String get callFailed => 'Impossible de lancer un appel sur cet appareil.';
 
   @override
+  String get privacyPolicy => 'Politique de confidentialité';
+
+  @override
+  String get privacyPolicyDesc => 'S\'ouvre dans votre navigateur';
+
+  @override
+  String get linkFailed =>
+      'Impossible d\'ouvrir le lien. Vérifiez votre connexion Internet.';
+
+  @override
   String get tasksTitle => 'Tâches';
 
   @override

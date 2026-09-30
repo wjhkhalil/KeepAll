@@ -33,7 +33,7 @@ Done everywhere: all 7 ARB files (`appTitle`, welcome text, etc.), Android
 label, iOS/macOS display & product names, Linux/Windows window titles and
 binary name (`lifekeeper`), web title, Dart package (`lifekeeper` — imports are
 `package:lifekeeper/...`), app class `LifeKeeperApp`, app id
-`com.lifekeeper.app` (owner's chosen app id; Kotlin package in `com/lifekeeper/app`).
+`com.lifekeep.app` (owner's chosen app id — `com.lifekeeper.app` was already taken on Google Play; Kotlin package in `com/lifekeep/app`).
 The project **folder** is still `Documents/my_life` (harmless).
 Compatibility kept on purpose (don't remove): backups are `lifekeeper.json` /
 `"app":"LifeKeeper"` but old `keepall.json` (`"KeepAll"`/`"Keepall"`) and
@@ -92,7 +92,7 @@ asset.
 flutter pub get
 flutter gen-l10n          # regenerate translations (also runs on build)
 flutter analyze           # must be "No issues found!"
-flutter test              # 105 tests, all must pass
+flutter test              # 108 tests, all must pass
 flutter build linux --debug && ./build/linux/x64/debug/bundle/lifekeeper
 flutter run               # on a phone/emulator
 flutter build appbundle   # Play Store release (.aab)
@@ -263,7 +263,10 @@ reminder opens the document.
 Lists/Receipts in Simple), General (name, mode, default currency, language),
 Appearance (theme light/dark/system, **colour theme** palette sheet),
 Accessibility (larger text, high contrast, ask before deleting), Safety
-(emergency contact), Backup (create / restore), About.
+(emergency contact), Backup (create / restore), About (logo + text, and a
+**Privacy policy** row that opens `privacyPolicyUrl` in more_screen.dart —
+the owner's freeprivacypolicy.com page, also needed in the Play Console —
+in the phone's browser; manifest has an `https` VIEW query for it).
 
 **Empty states:** small emoji illustration on a pastel circle + friendly text
 + add button: 🌱 tasks, 🧺 lists, 👛 receipts, 📁 documents, 🪙 currency search.
@@ -402,7 +405,7 @@ whole app pastel/rainbow.
 
 ---
 
-## 12. Tests (105, all passing)
+## 12. Tests (108, all passing)
 
 - `core_test.dart` – money (all currencies, decimals, parsing, search, region), dates, models.
 - `app_data_test.dart` – tasks/reminders/snooze/repeat/lists/receipts/corrupt data.
@@ -457,7 +460,7 @@ Open / next:
    No Android 13 "themed" (monochrome) icon yet.
 2. **Test on a real Android/iOS device**: reminders (incl. after reboot),
    notification actions, camera, backup save to Files/Drive, restore, emergency call.
-3. App id is `com.lifekeeper.app` (final — never change after the first Play upload). Play Store only; no App Store release planned.
+3. App id is `com.lifekeep.app` (final — never change after the first Play upload). Play Store only; no App Store release planned.
 4. Native-speaker review of translations (e.g. fr/it use the same word for Undo/Cancel; pl "Wydatki – {month}").
 5. Not built (by decision/limits): home-screen widgets (need native
    Kotlin/Swift + device testing), live shared lists (needs a server —

@@ -220,6 +220,16 @@ class AppLocalizationsEn extends AppLocalizations {
   String get callFailed => 'Couldn\'t start a call on this device.';
 
   @override
+  String get privacyPolicy => 'Privacy policy';
+
+  @override
+  String get privacyPolicyDesc => 'Opens in your web browser';
+
+  @override
+  String get linkFailed =>
+      'Couldn\'t open the link. Please check your internet connection.';
+
+  @override
   String get tasksTitle => 'Tasks';
 
   @override
