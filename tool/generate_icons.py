@@ -13,7 +13,7 @@ import os
 
 from PIL import Image, ImageDraw
 
-MASTER = 'assets/Icon/keepall_app_icon_512x512_original_background.png'
+MASTER = 'assets/Icon/lifekeeper_app_icon_512x512_original_background.png'
 # In-app logo (onboarding, About): rounded corners, transparent outside.
 IN_APP = 'assets/Icon/app_logo.png'
 

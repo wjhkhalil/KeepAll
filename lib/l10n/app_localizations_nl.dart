@@ -9,7 +9,7 @@ class AppLocalizationsNl extends AppLocalizations {
   AppLocalizationsNl([String locale = 'nl']) : super(locale);
 
   @override
-  String get appTitle => 'KeepAll';
+  String get appTitle => 'LifeKeeper';
 
   @override
   String get navHome => 'Start';
@@ -666,7 +666,7 @@ class AppLocalizationsNl extends AppLocalizations {
       'Grotere tekst en knoppen, herinneringen voor medicijnen en afspraken, noodcontact.';
 
   @override
-  String get onbWelcomeTitle => 'Welkom bij KeepAll';
+  String get onbWelcomeTitle => 'Welkom bij LifeKeeper';
 
   @override
   String get onbWelcomeBody =>
@@ -682,7 +682,7 @@ class AppLocalizationsNl extends AppLocalizations {
   String get onbStart => 'Aan de slag';
 
   @override
-  String get onbModeTitle => 'Hoe gebruik je KeepAll?';
+  String get onbModeTitle => 'Hoe gebruik je LifeKeeper?';
 
   @override
   String get onbModeBody => 'Je kunt dit altijd wijzigen bij Meer.';
@@ -756,7 +756,7 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get docsEmptyBody =>
-      'Houd je paspoort, ID-kaart, verzekering en meer bij. KeepAll herinnert je voordat ze verlopen.';
+      'Houd je paspoort, ID-kaart, verzekering en meer bij. LifeKeeper herinnert je voordat ze verlopen.';
 
   @override
   String get docNew => 'Nieuw document';
@@ -898,11 +898,11 @@ class AppLocalizationsNl extends AppLocalizations {
   String get backupFailed => 'Er ging iets mis. Probeer het opnieuw.';
 
   @override
-  String get backupInvalid => 'Dit bestand is geen back-up van KeepAll.';
+  String get backupInvalid => 'Dit bestand is geen back-up van LifeKeeper.';
 
   @override
   String get backupTooNew =>
-      'Deze back-up is gemaakt met een nieuwere versie van KeepAll. Werk de app eerst bij.';
+      'Deze back-up is gemaakt met een nieuwere versie van LifeKeeper. Werk de app eerst bij.';
 
   @override
   String get backupRestoreConfirmTitle => 'Back-up herstellen?';
@@ -1039,7 +1039,7 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get reminderOnTimeBody =>
-      'Android kan herinneringen uitstellen terwijl je telefoon slaapt. Zet op het volgende scherm ‘Wekkers en herinneringen’ aan voor KeepAll om ze precies op tijd te krijgen, ook als KeepAll gesloten is.';
+      'Android kan herinneringen uitstellen terwijl je telefoon slaapt. Zet op het volgende scherm ‘Wekkers en herinneringen’ aan voor LifeKeeper om ze precies op tijd te krijgen, ook als LifeKeeper gesloten is.';
 
   @override
   String get reminderOnTimeAllow => 'Toestaan';

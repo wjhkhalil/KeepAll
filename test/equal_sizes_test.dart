@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:intl/date_symbol_data_local.dart';
-import 'package:keepall/app.dart';
-import 'package:keepall/core/money.dart';
-import 'package:keepall/data/data_store.dart';
-import 'package:keepall/data/models.dart';
-import 'package:keepall/services/reminder_scheduler.dart';
-import 'package:keepall/state/app_data.dart';
-import 'package:keepall/state/settings.dart';
-import 'package:keepall/ui/design.dart';
-import 'package:keepall/ui/tasks/task_tile.dart';
+import 'package:lifekeeper/app.dart';
+import 'package:lifekeeper/core/money.dart';
+import 'package:lifekeeper/data/data_store.dart';
+import 'package:lifekeeper/data/models.dart';
+import 'package:lifekeeper/services/reminder_scheduler.dart';
+import 'package:lifekeeper/state/app_data.dart';
+import 'package:lifekeeper/state/settings.dart';
+import 'package:lifekeeper/ui/design.dart';
+import 'package:lifekeeper/ui/tasks/task_tile.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 /// Boxes of the same kind must all have the same height, whatever their text.
@@ -61,7 +61,7 @@ Future<AppData> pump(WidgetTester tester, Map<String, Object> prefs, {double tex
     await data.addItem(b.id, 'Screws');
     await data.toggleItem(b.id, data.listById(b.id)!.items.single.id);
   });
-  await tester.pumpWidget(KeepallApp(settings: settings, data: data));
+  await tester.pumpWidget(LifeKeeperApp(settings: settings, data: data));
   await tester.pumpAndSettle();
   return data;
 }

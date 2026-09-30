@@ -1,4 +1,4 @@
-package com.keepall.app
+package com.lifekeeper.app
 
 import io.flutter.embedding.android.FlutterActivity
 

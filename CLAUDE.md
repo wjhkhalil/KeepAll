@@ -1,4 +1,4 @@
-# Keepall — project handover
+# LifeKeeper — project handover
 
 This file tells a new AI assistant (or developer) everything needed to keep
 working on this app. Read it fully before changing anything. Keep it up to
@@ -28,22 +28,23 @@ Hard product rules (owner's decisions, do not break):
   60–70 year old.
 
 ### Name
-The app is called **"Keepall"** (renamed from the working title "MyLife").
+The app is called **"LifeKeeper"** (earlier titles: "MyLife", then "Keepall").
 Done everywhere: all 7 ARB files (`appTitle`, welcome text, etc.), Android
 label, iOS/macOS display & product names, Linux/Windows window titles and
-binary name (`keepall`), web title, Dart package (`keepall` — imports are
-`package:keepall/...`), app class `KeepallApp`, app id
-`com.keepall.app` (owner's chosen app id; Kotlin package in `com/keepall/app`).
+binary name (`lifekeeper`), web title, Dart package (`lifekeeper` — imports are
+`package:lifekeeper/...`), app class `LifeKeeperApp`, app id
+`com.lifekeeper.app` (owner's chosen app id; Kotlin package in `com/lifekeeper/app`).
 The project **folder** is still `Documents/my_life` (harmless).
-Compatibility kept on purpose (don't remove): backups are `keepall.json` /
-`"app":"Keepall"` but old `mylife.json` / `"MyLife"` backups still restore;
-data file is `keepall_data.json` and an old `mylife_data.json` is read once
-and then removed. Tests cover both.
+Compatibility kept on purpose (don't remove): backups are `lifekeeper.json` /
+`"app":"LifeKeeper"` but old `keepall.json` (`"KeepAll"`/`"Keepall"`) and
+`mylife.json` / `"MyLife"` backups still restore; data file is
+`lifekeeper_data.json` and old `keepall_data.json` / `mylife_data.json` files
+are read once and then removed. Tests cover all of it.
 
 ### App icon
 **Done (owner's own design):** a green-roofed house holding coloured feature
 cards (tick, cart, receipt, passport, bell) between two leaves, on cream
-`#FEFAEA`. Master file: `assets/Icon/keepall_app_icon_512x512_original_background.png`
+`#FEFAEA`. Master file: `assets/Icon/lifekeeper_app_icon_512x512_original_background.png`
 (512 px; ask the owner for a 1024 px version for sharper iOS/macOS icons).
 `python3 tool/generate_icons.py` (needs Pillow) makes **every** icon from it:
 Android legacy + adaptive icon (foreground picture 74 of 108 dp so it fits
@@ -92,7 +93,7 @@ flutter pub get
 flutter gen-l10n          # regenerate translations (also runs on build)
 flutter analyze           # must be "No issues found!"
 flutter test              # 105 tests, all must pass
-flutter build linux --debug && ./build/linux/x64/debug/bundle/keepall
+flutter build linux --debug && ./build/linux/x64/debug/bundle/lifekeeper
 flutter run               # on a phone/emulator
 flutter build appbundle   # Play Store release (.aab)
 ```
@@ -171,7 +172,8 @@ test/                       see §12
 
 ## 5. Data model, storage, backup
 
-- **Storage:** one JSON document `keepall_data.json` (legacy `mylife_data.json` migrated) in the app-support
+- **Storage:** one JSON document `lifekeeper_data.json` (legacy `keepall_data.json` /
+  `mylife_data.json` migrated) in the app-support
   directory, written atomically (tmp file + rename), writes serialised.
   Shape: `{version: 1, tasks: [], lists: [], receipts: [], documents: []}`.
   Corrupt individual records are skipped on load, not fatal.
@@ -194,7 +196,7 @@ test/                       see §12
 - **Document:** title, type (passport/idCard/drivingLicence/insurance/vehicle/
   health/contract/warranty/other), number, expiresAt, remindDaysBefore
   (0/7/14/30/60/90), notes, imageFile. Reminder at 09:00 N days before expiry.
-- **Backup (.zip):** `keepall.json` (marker `{"app":"Keepall","format":1}`; legacy MyLife backups accepted),
+- **Backup (.zip):** `lifekeeper.json` (marker `{"app":"LifeKeeper","format":1}`; legacy KeepAll/MyLife backups accepted),
   `data.json`, `settings.json`, `images/<name>`. Restore validates the marker
   and version, ignores unsafe image paths, shows counts, asks before
   replacing everything, then reschedules reminders.
@@ -211,7 +213,7 @@ test/                       see §12
 - Documents is never a tab — opened from Home card or More → Organise.
 - Back button on a non-Home tab returns to Home first.
 
-**Onboarding (first launch):** app logo, "Welcome to Keepall", tagline
+**Onboarding (first launch):** app logo, "Welcome to LifeKeeper", tagline
 "Your everyday things, all in one peaceful place.", language dropdown,
 [Get started] → choose mode (📚 Student / 🏡 Everyday / 🌿 Simple cards with
 pastel fill + outline + check when selected) → name (optional) → currency
@@ -448,14 +450,14 @@ there because the test renderer has no emoji font.
 
 Done: everything in §6–§11, 7 languages, all currencies, backup/restore,
 documents, sharing lists as text, redesign, palettes, equal-size boxes,
-rename to Keepall, app icon on all platforms.
+rename to Keepall and later to LifeKeeper, app icon on all platforms.
 
 Open / next:
 1. App icon: only a 512 px master exists; a 1024 px version would make iOS/macOS icons sharper.
    No Android 13 "themed" (monochrome) icon yet.
 2. **Test on a real Android/iOS device**: reminders (incl. after reboot),
    notification actions, camera, backup save to Files/Drive, restore, emergency call.
-3. App id is `com.keepall.app` (final — never change after the first Play upload). Play Store only; no App Store release planned.
+3. App id is `com.lifekeeper.app` (final — never change after the first Play upload). Play Store only; no App Store release planned.
 4. Native-speaker review of translations (e.g. fr/it use the same word for Undo/Cancel; pl "Wydatki – {month}").
 5. Not built (by decision/limits): home-screen widgets (need native
    Kotlin/Swift + device testing), live shared lists (needs a server —

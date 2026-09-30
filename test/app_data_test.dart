@@ -1,12 +1,12 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:intl/date_symbol_data_local.dart';
-import 'package:keepall/core/dates.dart';
-import 'package:keepall/core/money.dart';
-import 'package:keepall/data/data_store.dart';
-import 'package:keepall/data/models.dart';
-import 'package:keepall/services/reminder_scheduler.dart';
-import 'package:keepall/state/app_data.dart';
-import 'package:keepall/state/task_groups.dart';
+import 'package:lifekeeper/core/dates.dart';
+import 'package:lifekeeper/core/money.dart';
+import 'package:lifekeeper/data/data_store.dart';
+import 'package:lifekeeper/data/models.dart';
+import 'package:lifekeeper/services/reminder_scheduler.dart';
+import 'package:lifekeeper/state/app_data.dart';
+import 'package:lifekeeper/state/task_groups.dart';
 
 void main() {
   setUpAll(() => initializeDateFormatting(appDateLocale));

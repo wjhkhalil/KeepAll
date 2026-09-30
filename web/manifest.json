@@ -1,6 +1,6 @@
 {
-    "name": "KeepAll",
-    "short_name": "KeepAll",
+    "name": "LifeKeeper",
+    "short_name": "LifeKeeper",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#FEFAEA",

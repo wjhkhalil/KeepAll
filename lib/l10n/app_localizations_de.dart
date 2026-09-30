@@ -9,7 +9,7 @@ class AppLocalizationsDe extends AppLocalizations {
   AppLocalizationsDe([String locale = 'de']) : super(locale);
 
   @override
-  String get appTitle => 'KeepAll';
+  String get appTitle => 'LifeKeeper';
 
   @override
   String get navHome => 'Start';
@@ -667,7 +667,7 @@ class AppLocalizationsDe extends AppLocalizations {
       'Größere Schrift und Schaltflächen, Erinnerungen für Medikamente und Termine, Notfallkontakt.';
 
   @override
-  String get onbWelcomeTitle => 'Willkommen bei KeepAll';
+  String get onbWelcomeTitle => 'Willkommen bei LifeKeeper';
 
   @override
   String get onbWelcomeBody => 'Deine Alltagsdinge, alle an einem ruhigen Ort.';
@@ -682,7 +682,7 @@ class AppLocalizationsDe extends AppLocalizations {
   String get onbStart => 'Los geht\'s';
 
   @override
-  String get onbModeTitle => 'Wie möchtest du KeepAll nutzen?';
+  String get onbModeTitle => 'Wie möchtest du LifeKeeper nutzen?';
 
   @override
   String get onbModeBody => 'Du kannst das jederzeit unter Mehr ändern.';
@@ -757,7 +757,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get docsEmptyBody =>
-      'Behalte den Überblick über Reisepass, Personalausweis, Versicherung und mehr. KeepAll erinnert dich, bevor sie ablaufen.';
+      'Behalte den Überblick über Reisepass, Personalausweis, Versicherung und mehr. LifeKeeper erinnert dich, bevor sie ablaufen.';
 
   @override
   String get docNew => 'Neues Dokument';
@@ -900,11 +900,11 @@ class AppLocalizationsDe extends AppLocalizations {
       'Etwas ist schiefgelaufen. Bitte versuche es erneut.';
 
   @override
-  String get backupInvalid => 'Diese Datei ist keine KeepAll-Sicherung.';
+  String get backupInvalid => 'Diese Datei ist keine LifeKeeper-Sicherung.';
 
   @override
   String get backupTooNew =>
-      'Diese Sicherung wurde mit einer neueren Version von KeepAll erstellt. Bitte aktualisiere zuerst die App.';
+      'Diese Sicherung wurde mit einer neueren Version von LifeKeeper erstellt. Bitte aktualisiere zuerst die App.';
 
   @override
   String get backupRestoreConfirmTitle => 'Sicherung wiederherstellen?';
@@ -1041,7 +1041,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get reminderOnTimeBody =>
-      'Android kann Erinnerungen zurückhalten, während dein Handy ruht. Damit sie pünktlich kommen, auch wenn KeepAll geschlossen ist, aktiviere auf dem nächsten Bildschirm „Wecker & Erinnerungen“ für KeepAll.';
+      'Android kann Erinnerungen zurückhalten, während dein Handy ruht. Damit sie pünktlich kommen, auch wenn LifeKeeper geschlossen ist, aktiviere auf dem nächsten Bildschirm „Wecker & Erinnerungen“ für LifeKeeper.';
 
   @override
   String get reminderOnTimeAllow => 'Erlauben';

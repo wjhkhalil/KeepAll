@@ -9,7 +9,7 @@ class AppLocalizationsPl extends AppLocalizations {
   AppLocalizationsPl([String locale = 'pl']) : super(locale);
 
   @override
-  String get appTitle => 'KeepAll';
+  String get appTitle => 'LifeKeeper';
 
   @override
   String get navHome => 'Start';
@@ -679,7 +679,7 @@ class AppLocalizationsPl extends AppLocalizations {
       'Większy tekst i przyciski, przypomnienia o lekach i wizytach, kontakt alarmowy.';
 
   @override
-  String get onbWelcomeTitle => 'Witaj w KeepAll';
+  String get onbWelcomeTitle => 'Witaj w LifeKeeper';
 
   @override
   String get onbWelcomeBody =>
@@ -695,7 +695,7 @@ class AppLocalizationsPl extends AppLocalizations {
   String get onbStart => 'Zaczynamy';
 
   @override
-  String get onbModeTitle => 'Jak będziesz korzystać z KeepAll?';
+  String get onbModeTitle => 'Jak będziesz korzystać z LifeKeeper?';
 
   @override
   String get onbModeBody =>
@@ -774,7 +774,7 @@ class AppLocalizationsPl extends AppLocalizations {
 
   @override
   String get docsEmptyBody =>
-      'Miej pod kontrolą paszport, dowód osobisty, ubezpieczenie i inne dokumenty. KeepAll przypomni ci, zanim wygasną.';
+      'Miej pod kontrolą paszport, dowód osobisty, ubezpieczenie i inne dokumenty. LifeKeeper przypomni ci, zanim wygasną.';
 
   @override
   String get docNew => 'Nowy dokument';
@@ -920,11 +920,11 @@ class AppLocalizationsPl extends AppLocalizations {
   String get backupFailed => 'Coś poszło nie tak. Spróbuj ponownie.';
 
   @override
-  String get backupInvalid => 'Ten plik nie jest kopią zapasową KeepAll.';
+  String get backupInvalid => 'Ten plik nie jest kopią zapasową LifeKeeper.';
 
   @override
   String get backupTooNew =>
-      'Ta kopia zapasowa została utworzona w nowszej wersji KeepAll. Najpierw zaktualizuj aplikację.';
+      'Ta kopia zapasowa została utworzona w nowszej wersji LifeKeeper. Najpierw zaktualizuj aplikację.';
 
   @override
   String get backupRestoreConfirmTitle => 'Przywrócić kopię zapasową?';
@@ -1063,7 +1063,7 @@ class AppLocalizationsPl extends AppLocalizations {
 
   @override
   String get reminderOnTimeBody =>
-      'Android może wstrzymywać przypomnienia, gdy telefon jest uśpiony. Aby dostawać je dokładnie na czas, nawet gdy KeepAll jest zamknięta, włącz „Alarmy i przypomnienia” dla KeepAll na następnym ekranie.';
+      'Android może wstrzymywać przypomnienia, gdy telefon jest uśpiony. Aby dostawać je dokładnie na czas, nawet gdy LifeKeeper jest zamknięta, włącz „Alarmy i przypomnienia” dla LifeKeeper na następnym ekranie.';
 
   @override
   String get reminderOnTimeAllow => 'Zezwól';

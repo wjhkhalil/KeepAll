@@ -111,7 +111,7 @@ abstract class AppLocalizations {
   /// No description provided for @appTitle.
   ///
   /// In en, this message translates to:
-  /// **'KeepAll'**
+  /// **'LifeKeeper'**
   String get appTitle;
 
   /// No description provided for @navHome.
@@ -1221,7 +1221,7 @@ abstract class AppLocalizations {
   /// No description provided for @onbWelcomeTitle.
   ///
   /// In en, this message translates to:
-  /// **'Welcome to KeepAll'**
+  /// **'Welcome to LifeKeeper'**
   String get onbWelcomeTitle;
 
   /// No description provided for @onbWelcomeBody.
@@ -1251,7 +1251,7 @@ abstract class AppLocalizations {
   /// No description provided for @onbModeTitle.
   ///
   /// In en, this message translates to:
-  /// **'How will you use KeepAll?'**
+  /// **'How will you use LifeKeeper?'**
   String get onbModeTitle;
 
   /// No description provided for @onbModeBody.
@@ -1359,7 +1359,7 @@ abstract class AppLocalizations {
   /// No description provided for @docsEmptyBody.
   ///
   /// In en, this message translates to:
-  /// **'Keep track of your passport, ID card, insurance and more. KeepAll reminds you before they expire.'**
+  /// **'Keep track of your passport, ID card, insurance and more. LifeKeeper reminds you before they expire.'**
   String get docsEmptyBody;
 
   /// No description provided for @docNew.
@@ -1593,13 +1593,13 @@ abstract class AppLocalizations {
   /// No description provided for @backupInvalid.
   ///
   /// In en, this message translates to:
-  /// **'This file isn\'t a KeepAll backup.'**
+  /// **'This file isn\'t a LifeKeeper backup.'**
   String get backupInvalid;
 
   /// No description provided for @backupTooNew.
   ///
   /// In en, this message translates to:
-  /// **'This backup was made with a newer version of KeepAll. Please update the app first.'**
+  /// **'This backup was made with a newer version of LifeKeeper. Please update the app first.'**
   String get backupTooNew;
 
   /// No description provided for @backupRestoreConfirmTitle.
@@ -1821,7 +1821,7 @@ abstract class AppLocalizations {
   /// No description provided for @reminderOnTimeBody.
   ///
   /// In en, this message translates to:
-  /// **'Android may hold reminders back while your phone is asleep. To get them exactly on time, even when KeepAll is closed, turn on “Alarms & reminders” for KeepAll on the next screen.'**
+  /// **'Android may hold reminders back while your phone is asleep. To get them exactly on time, even when LifeKeeper is closed, turn on “Alarms & reminders” for LifeKeeper on the next screen.'**
   String get reminderOnTimeBody;
 
   /// No description provided for @reminderOnTimeAllow.

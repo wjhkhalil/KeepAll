@@ -26,5 +26,5 @@ Future<void> main() async {
   final data = AppData(store: FileDataStore(), scheduler: scheduler, l10n: l);
   await data.load();
 
-  runApp(KeepallApp(settings: settings, data: data));
+  runApp(LifeKeeperApp(settings: settings, data: data));
 }

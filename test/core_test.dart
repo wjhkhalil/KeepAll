@@ -1,8 +1,8 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:intl/date_symbol_data_local.dart';
-import 'package:keepall/core/dates.dart';
-import 'package:keepall/core/money.dart';
-import 'package:keepall/data/models.dart';
+import 'package:lifekeeper/core/dates.dart';
+import 'package:lifekeeper/core/money.dart';
+import 'package:lifekeeper/data/models.dart';
 
 void main() {
   setUpAll(() => initializeDateFormatting(appDateLocale));

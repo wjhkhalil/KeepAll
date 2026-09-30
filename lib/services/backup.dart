@@ -8,27 +8,29 @@ import '../state/app_data.dart';
 import '../state/settings.dart';
 
 /// Backups are a single .zip:
-///   keepall.json   – format marker + version (older backups: mylife.json)
+///   lifekeeper.json – format marker + version (older backups: keepall.json, mylife.json)
 ///   data.json      – tasks, lists, receipts, documents
 ///   settings.json  – mode, theme, currency, language...
 ///   images/NAME    – receipt and document photos
 class Backup {
-  static const _marker = 'keepall.json';
-  static const appName = 'KeepAll';
+  static const _marker = 'lifekeeper.json';
+  static const appName = 'LifeKeeper';
 
   /// Backups made before the app was renamed from "MyLife" still restore.
   static const _legacyMarker = 'mylife.json';
   static const _legacyAppName = 'MyLife';
 
-  /// Backups made before the app was renamed to "KeepAll" still restore.
-  static const _legacyAppName2 = 'Keepall';
+  /// Backups made before the app was renamed to "LifeKeeper" still restore.
+  static const _legacyMarker2 = 'keepall.json';
+  static const _legacyAppName2 = 'KeepAll';
+  static const _legacyAppName3 = 'Keepall';
   static const _data = 'data.json';
   static const _settings = 'settings.json';
   static const _images = 'images/';
   static const formatVersion = 1;
 
   static String fileName(DateTime now) =>
-      'keepall-backup-${now.year}-${_two(now.month)}-${_two(now.day)}.zip';
+      'lifekeeper-backup-${now.year}-${_two(now.month)}-${_two(now.day)}.zip';
 
   static String _two(int v) => v.toString().padLeft(2, '0');
 
@@ -47,7 +49,8 @@ class Backup {
   }
 
   /// Parses and validates a backup. Throws [BackupException] if the file is
-  /// not a Keepall (or older MyLife) backup or was made by a newer version of the app.
+  /// not a LifeKeeper (or older KeepAll / MyLife) backup or was made by a
+  /// newer version of the app.
   static BackupContents read(Uint8List bytes) {
     final Archive archive;
     try {
@@ -65,8 +68,17 @@ class Backup {
       }
     }
 
-    final marker = json(archive.findFile(_marker) != null ? _marker : _legacyMarker);
-    if (marker['app'] != appName && marker['app'] != _legacyAppName && marker['app'] != _legacyAppName2) {
+    final marker = json(
+      archive.findFile(_marker) != null
+          ? _marker
+          : archive.findFile(_legacyMarker2) != null
+              ? _legacyMarker2
+              : _legacyMarker,
+    );
+    if (marker['app'] != appName &&
+        marker['app'] != _legacyAppName &&
+        marker['app'] != _legacyAppName2 &&
+        marker['app'] != _legacyAppName3) {
       throw const BackupException(BackupError.notABackup);
     }
     final format = marker['format'];

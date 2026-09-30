@@ -9,7 +9,7 @@ class AppLocalizationsEs extends AppLocalizations {
   AppLocalizationsEs([String locale = 'es']) : super(locale);
 
   @override
-  String get appTitle => 'KeepAll';
+  String get appTitle => 'LifeKeeper';
 
   @override
   String get navHome => 'Inicio';
@@ -668,7 +668,7 @@ class AppLocalizationsEs extends AppLocalizations {
       'Texto y botones más grandes, recordatorios de medicinas y citas, contacto de emergencia.';
 
   @override
-  String get onbWelcomeTitle => 'Bienvenido a KeepAll';
+  String get onbWelcomeTitle => 'Bienvenido a LifeKeeper';
 
   @override
   String get onbWelcomeBody =>
@@ -684,7 +684,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get onbStart => 'Empezar';
 
   @override
-  String get onbModeTitle => '¿Cómo vas a usar KeepAll?';
+  String get onbModeTitle => '¿Cómo vas a usar LifeKeeper?';
 
   @override
   String get onbModeBody => 'Puedes cambiarlo cuando quieras en Más.';
@@ -759,7 +759,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get docsEmptyBody =>
-      'Guarda tu pasaporte, DNI, seguro y más. KeepAll te avisa antes de que caduquen.';
+      'Guarda tu pasaporte, DNI, seguro y más. LifeKeeper te avisa antes de que caduquen.';
 
   @override
   String get docNew => 'Nuevo documento';
@@ -903,11 +903,11 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get backupInvalid =>
-      'Este archivo no es una copia de seguridad de KeepAll.';
+      'Este archivo no es una copia de seguridad de LifeKeeper.';
 
   @override
   String get backupTooNew =>
-      'Esta copia de seguridad se hizo con una versión más reciente de KeepAll. Actualiza la app primero.';
+      'Esta copia de seguridad se hizo con una versión más reciente de LifeKeeper. Actualiza la app primero.';
 
   @override
   String get backupRestoreConfirmTitle => '¿Restaurar copia de seguridad?';
@@ -1043,7 +1043,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get reminderOnTimeBody =>
-      'Android puede retrasar los recordatorios mientras el móvil está en reposo. Para recibirlos a la hora exacta, aunque KeepAll esté cerrada, activa «Alarmas y recordatorios» para KeepAll en la siguiente pantalla.';
+      'Android puede retrasar los recordatorios mientras el móvil está en reposo. Para recibirlos a la hora exacta, aunque LifeKeeper esté cerrada, activa «Alarmas y recordatorios» para LifeKeeper en la siguiente pantalla.';
 
   @override
   String get reminderOnTimeAllow => 'Permitir';

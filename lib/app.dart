@@ -14,8 +14,8 @@ import 'ui/onboarding_screen.dart';
 import 'ui/shell.dart';
 import 'ui/theme.dart';
 
-class KeepallApp extends StatelessWidget {
-  const KeepallApp({super.key, required this.settings, required this.data});
+class LifeKeeperApp extends StatelessWidget {
+  const LifeKeeperApp({super.key, required this.settings, required this.data});
 
   final Settings settings;
   final AppData data;

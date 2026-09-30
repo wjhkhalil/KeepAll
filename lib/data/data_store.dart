@@ -16,10 +16,10 @@ abstract class DataStore {
 class FileDataStore implements DataStore {
   FileDataStore({Directory? baseDir}) : _baseDir = baseDir;
 
-  static const _fileName = 'keepall_data.json';
+  static const _fileName = 'lifekeeper_data.json';
 
-  /// File name used before the rename from "MyLife"; read once, then removed.
-  static const _legacyFileName = 'mylife_data.json';
+  /// File names used before the rename to "LifeKeeper"; read once, then removed.
+  static const _legacyFileNames = ['keepall_data.json', 'mylife_data.json'];
 
   Directory? _baseDir;
   Future<void> _pending = Future.value();
@@ -31,8 +31,11 @@ class FileDataStore implements DataStore {
     final dir = (await _dir()).path;
     var file = File('$dir/$_fileName');
     if (!await file.exists()) {
-      // Data saved under the old name is picked up; the next save moves it.
-      file = File('$dir/$_legacyFileName');
+      // Data saved under an old name is picked up; the next save moves it.
+      for (final name in _legacyFileNames) {
+        file = File('$dir/$name');
+        if (await file.exists()) break;
+      }
       if (!await file.exists()) return null;
     }
     final text = await file.readAsString();
@@ -53,8 +56,10 @@ class FileDataStore implements DataStore {
     await tmp.writeAsString(jsonEncode(data), flush: true);
     // Rename is atomic, so a crash mid-write never corrupts existing data.
     await tmp.rename('${dir.path}/$_fileName');
-    final legacy = File('${dir.path}/$_legacyFileName');
-    if (await legacy.exists()) await legacy.delete();
+    for (final name in _legacyFileNames) {
+      final legacy = File('${dir.path}/$name');
+      if (await legacy.exists()) await legacy.delete();
+    }
   }
 
   @override
@@ -83,5 +88,5 @@ class MemoryDataStore implements DataStore {
   }
 
   @override
-  Future<Directory> imagesDir() async => Directory.systemTemp.createTemp('keepall_test');
+  Future<Directory> imagesDir() async => Directory.systemTemp.createTemp('lifekeeper_test');
 }

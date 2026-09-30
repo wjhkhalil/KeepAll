@@ -5,14 +5,14 @@ import 'dart:typed_data';
 import 'package:archive/archive.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:intl/date_symbol_data_local.dart';
-import 'package:keepall/core/dates.dart';
-import 'package:keepall/core/money.dart';
-import 'package:keepall/data/data_store.dart';
-import 'package:keepall/data/models.dart';
-import 'package:keepall/services/backup.dart';
-import 'package:keepall/services/reminder_scheduler.dart';
-import 'package:keepall/state/app_data.dart';
-import 'package:keepall/state/settings.dart';
+import 'package:lifekeeper/core/dates.dart';
+import 'package:lifekeeper/core/money.dart';
+import 'package:lifekeeper/data/data_store.dart';
+import 'package:lifekeeper/data/models.dart';
+import 'package:lifekeeper/services/backup.dart';
+import 'package:lifekeeper/services/reminder_scheduler.dart';
+import 'package:lifekeeper/state/app_data.dart';
+import 'package:lifekeeper/state/settings.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
@@ -111,7 +111,7 @@ void main() {
     late Directory tmp;
 
     setUp(() async {
-      tmp = await Directory.systemTemp.createTemp('keepall_backup_test');
+      tmp = await Directory.systemTemp.createTemp('lifekeeper_backup_test');
     });
     tearDown(() => tmp.delete(recursive: true));
 
@@ -174,7 +174,7 @@ void main() {
 
     test('rejects backups from a newer app version', () {
       final zip = ZipEncoder().encodeBytes(Archive()
-        ..add(ArchiveFile.string('keepall.json', '{"app":"Keepall","format":99}'))
+        ..add(ArchiveFile.string('lifekeeper.json', '{"app":"LifeKeeper","format":99}'))
         ..add(ArchiveFile.string('data.json', '{}'))
         ..add(ArchiveFile.string('settings.json', '{}')));
       expect(
@@ -191,11 +191,19 @@ void main() {
       expect(Backup.read(zip).count('tasks'), 1);
     });
 
-    test('new backups are marked as KeepAll', () async {
+    test('still restores backups made when the app was called KeepAll', () {
+      final zip = ZipEncoder().encodeBytes(Archive()
+        ..add(ArchiveFile.string('keepall.json', '{"app":"KeepAll","format":1}'))
+        ..add(ArchiveFile.string('data.json', '{"version":1,"tasks":[{"id":"t","notificationId":1,"title":"Old"}]}'))
+        ..add(ArchiveFile.string('settings.json', '{}')));
+      expect(Backup.read(zip).count('tasks'), 1);
+    });
+
+    test('new backups are marked as LifeKeeper', () async {
       final (src, settings, _) = await make('mark', {});
       final contents = ZipDecoder().decodeBytes(await Backup.create(src, settings));
-      expect(utf8.decode(contents.findFile('keepall.json')!.content), contains('"KeepAll"'));
-      expect(Backup.fileName(DateTime(2026, 9, 27)), 'keepall-backup-2026-09-27.zip');
+      expect(utf8.decode(contents.findFile('lifekeeper.json')!.content), contains('"LifeKeeper"'));
+      expect(Backup.fileName(DateTime(2026, 9, 27)), 'lifekeeper-backup-2026-09-27.zip');
     });
 
     test('data saved under the old MyLife file name is picked up and moved', () async {
@@ -206,13 +214,25 @@ void main() {
       await data.load();
       expect(data.tasks.single.title, 'Kept');
       await data.saveTask(data.tasks.single.copyWith(title: 'Kept'));
-      expect(File('${dir.path}/keepall_data.json').existsSync(), isTrue);
+      expect(File('${dir.path}/lifekeeper_data.json').existsSync(), isTrue);
       expect(File('${dir.path}/mylife_data.json').existsSync(), isFalse);
+    });
+
+    test('data saved under the old KeepAll file name is picked up and moved', () async {
+      final dir = Directory('${tmp.path}/legacy2')..createSync();
+      File('${dir.path}/keepall_data.json').writeAsStringSync('{"version":1,"tasks":[{"id":"t","notificationId":1,"title":"Kept"}]}');
+      final store = FileDataStore(baseDir: dir);
+      final data = AppData(store: store, scheduler: FakeReminderScheduler());
+      await data.load();
+      expect(data.tasks.single.title, 'Kept');
+      await data.saveTask(data.tasks.single.copyWith(title: 'Kept'));
+      expect(File('${dir.path}/lifekeeper_data.json').existsSync(), isTrue);
+      expect(File('${dir.path}/keepall_data.json').existsSync(), isFalse);
     });
 
     test('ignores image paths that try to escape the folder', () {
       final zip = ZipEncoder().encodeBytes(Archive()
-        ..add(ArchiveFile.string('keepall.json', '{"app":"Keepall","format":1}'))
+        ..add(ArchiveFile.string('lifekeeper.json', '{"app":"LifeKeeper","format":1}'))
         ..add(ArchiveFile.string('data.json', '{"version":1}'))
         ..add(ArchiveFile.string('settings.json', '{}'))
         ..add(ArchiveFile.bytes('images/../../evil.sh', [1]))

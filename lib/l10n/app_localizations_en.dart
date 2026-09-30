@@ -9,7 +9,7 @@ class AppLocalizationsEn extends AppLocalizations {
   AppLocalizationsEn([String locale = 'en']) : super(locale);
 
   @override
-  String get appTitle => 'KeepAll';
+  String get appTitle => 'LifeKeeper';
 
   @override
   String get navHome => 'Home';
@@ -664,7 +664,7 @@ class AppLocalizationsEn extends AppLocalizations {
       'Bigger text and buttons, medicine and appointment reminders, emergency contact.';
 
   @override
-  String get onbWelcomeTitle => 'Welcome to KeepAll';
+  String get onbWelcomeTitle => 'Welcome to LifeKeeper';
 
   @override
   String get onbWelcomeBody =>
@@ -680,7 +680,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get onbStart => 'Get started';
 
   @override
-  String get onbModeTitle => 'How will you use KeepAll?';
+  String get onbModeTitle => 'How will you use LifeKeeper?';
 
   @override
   String get onbModeBody => 'You can change this any time in More.';
@@ -754,7 +754,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get docsEmptyBody =>
-      'Keep track of your passport, ID card, insurance and more. KeepAll reminds you before they expire.';
+      'Keep track of your passport, ID card, insurance and more. LifeKeeper reminds you before they expire.';
 
   @override
   String get docNew => 'New document';
@@ -894,11 +894,11 @@ class AppLocalizationsEn extends AppLocalizations {
   String get backupFailed => 'Something went wrong. Please try again.';
 
   @override
-  String get backupInvalid => 'This file isn\'t a KeepAll backup.';
+  String get backupInvalid => 'This file isn\'t a LifeKeeper backup.';
 
   @override
   String get backupTooNew =>
-      'This backup was made with a newer version of KeepAll. Please update the app first.';
+      'This backup was made with a newer version of LifeKeeper. Please update the app first.';
 
   @override
   String get backupRestoreConfirmTitle => 'Restore backup?';
@@ -1033,7 +1033,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get reminderOnTimeBody =>
-      'Android may hold reminders back while your phone is asleep. To get them exactly on time, even when KeepAll is closed, turn on “Alarms & reminders” for KeepAll on the next screen.';
+      'Android may hold reminders back while your phone is asleep. To get them exactly on time, even when LifeKeeper is closed, turn on “Alarms & reminders” for LifeKeeper on the next screen.';
 
   @override
   String get reminderOnTimeAllow => 'Allow';

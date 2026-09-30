@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:intl/date_symbol_data_local.dart';
-import 'package:keepall/app.dart';
-import 'package:keepall/data/data_store.dart';
-import 'package:keepall/data/models.dart';
-import 'package:keepall/core/money.dart';
-import 'package:keepall/services/reminder_scheduler.dart';
-import 'package:keepall/state/app_data.dart';
-import 'package:keepall/state/settings.dart';
+import 'package:lifekeeper/app.dart';
+import 'package:lifekeeper/data/data_store.dart';
+import 'package:lifekeeper/data/models.dart';
+import 'package:lifekeeper/core/money.dart';
+import 'package:lifekeeper/services/reminder_scheduler.dart';
+import 'package:lifekeeper/state/app_data.dart';
+import 'package:lifekeeper/state/settings.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 /// Every tab, in several modes, themes and long-word languages, with large
@@ -45,7 +45,7 @@ void main() {
         await data.addItem(list.id, 'Mleko');
       });
 
-      await tester.pumpWidget(KeepallApp(settings: settings, data: data));
+      await tester.pumpWidget(LifeKeeperApp(settings: settings, data: data));
       await tester.pumpAndSettle();
       final navs = find.byWidgetPredicate((w) => w.key is ValueKey<String> && (w.key as ValueKey<String>).value.startsWith('nav-'));
       final n = navs.evaluate().length;

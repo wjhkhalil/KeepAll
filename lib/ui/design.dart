@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../data/models.dart';
 import '../state/settings.dart';
 
-/// Keepall's look: a clean neutral base (≈70%), soft pastel tints (≈20%) and a
+/// LifeKeeper's look: a clean neutral base (≈70%), soft pastel tints (≈20%) and a
 /// few stronger accents (≈10%). "Soft Pastel Planner" + "Modern Soft Nature".
 @immutable
 class AppColors extends ThemeExtension<AppColors> {
@@ -632,7 +632,7 @@ class TinyIllustration extends StatelessWidget {
   }
 }
 
-/// The Keepall logo (same picture as the app icon), with rounded corners.
+/// The LifeKeeper logo (same picture as the app icon), with rounded corners.
 /// In high contrast it is shown in grey tones with an outline, so that mode
 /// stays black and white.
 class AppLogo extends StatelessWidget {

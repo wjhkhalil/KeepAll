@@ -9,7 +9,7 @@ class AppLocalizationsFr extends AppLocalizations {
   AppLocalizationsFr([String locale = 'fr']) : super(locale);
 
   @override
-  String get appTitle => 'KeepAll';
+  String get appTitle => 'LifeKeeper';
 
   @override
   String get navHome => 'Accueil';
@@ -666,7 +666,7 @@ class AppLocalizationsFr extends AppLocalizations {
       'Texte et boutons plus grands, rappels de médicaments et de rendez-vous, contact d\'urgence.';
 
   @override
-  String get onbWelcomeTitle => 'Bienvenue dans KeepAll';
+  String get onbWelcomeTitle => 'Bienvenue dans LifeKeeper';
 
   @override
   String get onbWelcomeBody =>
@@ -682,7 +682,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get onbStart => 'Commencer';
 
   @override
-  String get onbModeTitle => 'Comment allez-vous utiliser KeepAll ?';
+  String get onbModeTitle => 'Comment allez-vous utiliser LifeKeeper ?';
 
   @override
   String get onbModeBody => 'Vous pouvez changer cela à tout moment dans Plus.';
@@ -757,7 +757,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get docsEmptyBody =>
-      'Gardez une trace de votre passeport, carte d\'identité, assurance et plus. KeepAll vous rappelle avant leur expiration.';
+      'Gardez une trace de votre passeport, carte d\'identité, assurance et plus. LifeKeeper vous rappelle avant leur expiration.';
 
   @override
   String get docNew => 'Nouveau document';
@@ -900,11 +900,12 @@ class AppLocalizationsFr extends AppLocalizations {
   String get backupFailed => 'Une erreur s\'est produite. Veuillez réessayer.';
 
   @override
-  String get backupInvalid => 'Ce fichier n\'est pas une sauvegarde KeepAll.';
+  String get backupInvalid =>
+      'Ce fichier n\'est pas une sauvegarde LifeKeeper.';
 
   @override
   String get backupTooNew =>
-      'Cette sauvegarde a été créée avec une version plus récente de KeepAll. Veuillez d\'abord mettre à jour l\'application.';
+      'Cette sauvegarde a été créée avec une version plus récente de LifeKeeper. Veuillez d\'abord mettre à jour l\'application.';
 
   @override
   String get backupRestoreConfirmTitle => 'Restaurer la sauvegarde ?';
@@ -1041,7 +1042,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get reminderOnTimeBody =>
-      'Android peut retarder les rappels pendant que votre téléphone est en veille. Pour les recevoir à l’heure exacte, même quand KeepAll est fermé, activez « Alarmes et rappels » pour KeepAll sur l’écran suivant.';
+      'Android peut retarder les rappels pendant que votre téléphone est en veille. Pour les recevoir à l’heure exacte, même quand LifeKeeper est fermé, activez « Alarmes et rappels » pour LifeKeeper sur l’écran suivant.';
 
   @override
   String get reminderOnTimeAllow => 'Autoriser';

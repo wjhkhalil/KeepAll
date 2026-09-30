@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
-	<string>KeepAll</string>
+	<string>LifeKeeper</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>tel</string>
@@ -15,9 +15,9 @@
 		<string>tel</string>
 	</array>
 	<key>NSCameraUsageDescription</key>
-	<string>KeepAll uses the camera to photograph receipts.</string>
+	<string>LifeKeeper uses the camera to photograph receipts.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>KeepAll lets you attach receipt photos from your library.</string>
+	<string>LifeKeeper lets you attach receipt photos from your library.</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -25,7 +25,7 @@
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
-	<string>KeepAll</string>
+	<string>LifeKeeper</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>

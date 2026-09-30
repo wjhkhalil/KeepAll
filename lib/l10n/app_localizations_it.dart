@@ -9,7 +9,7 @@ class AppLocalizationsIt extends AppLocalizations {
   AppLocalizationsIt([String locale = 'it']) : super(locale);
 
   @override
-  String get appTitle => 'KeepAll';
+  String get appTitle => 'LifeKeeper';
 
   @override
   String get navHome => 'Home';
@@ -669,7 +669,7 @@ class AppLocalizationsIt extends AppLocalizations {
       'Testo e pulsanti più grandi, promemoria per farmaci e appuntamenti, contatto di emergenza.';
 
   @override
-  String get onbWelcomeTitle => 'Benvenuto in KeepAll';
+  String get onbWelcomeTitle => 'Benvenuto in LifeKeeper';
 
   @override
   String get onbWelcomeBody =>
@@ -685,7 +685,7 @@ class AppLocalizationsIt extends AppLocalizations {
   String get onbStart => 'Inizia';
 
   @override
-  String get onbModeTitle => 'Come vuoi usare KeepAll?';
+  String get onbModeTitle => 'Come vuoi usare LifeKeeper?';
 
   @override
   String get onbModeBody => 'Puoi cambiarlo in qualsiasi momento in Altro.';
@@ -759,7 +759,7 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get docsEmptyBody =>
-      'Tieni sotto controllo passaporto, carta d\'identità, assicurazione e altro. KeepAll ti avvisa prima che scadano.';
+      'Tieni sotto controllo passaporto, carta d\'identità, assicurazione e altro. LifeKeeper ti avvisa prima che scadano.';
 
   @override
   String get docNew => 'Nuovo documento';
@@ -901,11 +901,11 @@ class AppLocalizationsIt extends AppLocalizations {
   String get backupFailed => 'Qualcosa è andato storto. Riprova.';
 
   @override
-  String get backupInvalid => 'Questo file non è un backup di KeepAll.';
+  String get backupInvalid => 'Questo file non è un backup di LifeKeeper.';
 
   @override
   String get backupTooNew =>
-      'Questo backup è stato creato con una versione più recente di KeepAll. Aggiorna prima l\'app.';
+      'Questo backup è stato creato con una versione più recente di LifeKeeper. Aggiorna prima l\'app.';
 
   @override
   String get backupRestoreConfirmTitle => 'Ripristinare il backup?';
@@ -1042,7 +1042,7 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get reminderOnTimeBody =>
-      'Android può ritardare i promemoria mentre il telefono è in standby. Per riceverli all’ora esatta, anche con KeepAll chiusa, attiva «Sveglie e promemoria» per KeepAll nella schermata successiva.';
+      'Android può ritardare i promemoria mentre il telefono è in standby. Per riceverli all’ora esatta, anche con LifeKeeper chiusa, attiva «Sveglie e promemoria» per LifeKeeper nella schermata successiva.';
 
   @override
   String get reminderOnTimeAllow => 'Consenti';
