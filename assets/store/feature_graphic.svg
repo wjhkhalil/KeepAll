@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="500" viewBox="0 0 1024 500">
+  <defs>
+    <filter id="shadow" x="-20%" y="-20%" width="150%" height="150%">
+      <feDropShadow dx="0" dy="9" stdDeviation="12" flood-color="#315A4B" flood-opacity=".16"/>
+    </filter>
+    <filter id="smallShadow" x="-20%" y="-30%" width="150%" height="170%">
+      <feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#315A4B" flood-opacity=".12"/>
+    </filter>
+    <linearGradient id="page" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#FEFAEA"/>
+      <stop offset="1" stop-color="#F5F8E8"/>
+    </linearGradient>
+    <linearGradient id="phone" x1="0" y1="0" x2="0" y2="1">
+      <stop stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#F7F9EE"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1024" height="500" fill="url(#page)"/>
+  <circle cx="964" cy="-25" r="178" fill="#DCEBCB" opacity=".75"/>
+  <circle cx="505" cy="505" r="170" fill="#F7DEBB" opacity=".48"/>
+  <path d="M56 77c38-44 98-27 97 34-1 57-73 65-97 19-9-18-8-37 0-53Z" fill="#D4E7C3" opacity=".85"/>
+  <path d="M923 369c49-32 91 15 70 59-19 39-83 31-87-14-1-18 5-34 17-45Z" fill="#F5D4A6" opacity=".72"/>
+
+  <g filter="url(#smallShadow)">
+    <rect x="68" y="63" width="112" height="112" rx="31" fill="#FEFAEA"/>
+    <image href="../Icon/lifekeeper_app_icon_512x512_original_background.png" x="74" y="69" width="100" height="100"/>
+  </g>
+  <text x="204" y="105" fill="#285D4A" font-family="Nunito, Arial, sans-serif" font-size="43" font-weight="800" letter-spacing="-1">LifeKeeper</text>
+  <text x="207" y="137" fill="#5F756A" font-family="Nunito, Arial, sans-serif" font-size="18" font-weight="700" letter-spacing=".4">YOUR EVERYDAY THINGS, ALL IN ONE PEACEFUL PLACE</text>
+
+  <text x="69" y="232" fill="#234D3D" font-family="Nunito, Arial, sans-serif" font-size="47" font-weight="800" letter-spacing="-1.2">Keep your day</text>
+  <text x="69" y="283" fill="#234D3D" font-family="Nunito, Arial, sans-serif" font-size="47" font-weight="800" letter-spacing="-1.2">beautifully organised.</text>
+  <text x="72" y="325" fill="#62776D" font-family="Nunito, Arial, sans-serif" font-size="21" font-weight="600">Tasks, reminders, lists, receipts and documents —</text>
+  <text x="72" y="354" fill="#62776D" font-family="Nunito, Arial, sans-serif" font-size="21" font-weight="600">all calmly kept in one place.</text>
+
+  <g filter="url(#smallShadow)">
+    <rect x="68" y="389" width="135" height="52" rx="26" fill="#D9EBCB"/>
+    <circle cx="94" cy="415" r="13" fill="#4F8667"/>
+    <path d="m88 415 4 4 8-9" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="115" y="421" fill="#315E4C" font-family="Nunito, Arial, sans-serif" font-size="16" font-weight="800">TASKS</text>
+  </g>
+  <g filter="url(#smallShadow)">
+    <rect x="215" y="389" width="144" height="52" rx="26" fill="#F7DFB3"/>
+    <path d="M241 402h17l-2 20h-13l-2-20Zm2 5h13m-12 19c0 4 6 4 6 0m3 0c0 4 6 4 6 0" fill="none" stroke="#A87635" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="273" y="421" fill="#8B6530" font-family="Nunito, Arial, sans-serif" font-size="16" font-weight="800">LISTS</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="657" y="91" width="270" height="378" rx="36" fill="#335E50"/>
+    <rect x="665" y="102" width="254" height="354" rx="27" fill="url(#phone)"/>
+    <rect x="756" y="112" width="72" height="7" rx="3.5" fill="#B9C7BD"/>
+    <text x="692" y="158" fill="#254D3E" font-family="Nunito, Arial, sans-serif" font-size="23" font-weight="800">Good morning, Sara</text>
+    <text x="693" y="181" fill="#779083" font-family="Nunito, Arial, sans-serif" font-size="13" font-weight="700">TUESDAY, 24 SEPTEMBER</text>
+    <rect x="682" y="205" width="220" height="162" rx="19" fill="#E4F0D9"/>
+    <text x="699" y="234" fill="#315C4B" font-family="Nunito, Arial, sans-serif" font-size="16" font-weight="800">Upcoming tasks</text>
+    <circle cx="704" cy="266" r="11" fill="#4E896A"/>
+    <path d="m699 266 3.5 4 7-8" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="724" y="264" fill="#335E50" font-family="Nunito, Arial, sans-serif" font-size="14" font-weight="800">Pick up medicine</text>
+    <text x="724" y="280" fill="#7C9787" font-family="Nunito, Arial, sans-serif" font-size="11" font-weight="700">Today · 18:00</text>
+    <line x1="699" y1="298" x2="885" y2="298" stroke="#C8DCC3"/>
+    <circle cx="704" cy="323" r="11" fill="#F0A765"/>
+    <path d="m699 323 3.5 4 7-8" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="724" y="321" fill="#335E50" font-family="Nunito, Arial, sans-serif" font-size="14" font-weight="800">Pay electricity bill</text>
+    <text x="724" y="337" fill="#7C9787" font-family="Nunito, Arial, sans-serif" font-size="11" font-weight="700">Tomorrow</text>
+    <rect x="682" y="385" width="104" height="44" rx="14" fill="#F9E3C5"/>
+    <text x="702" y="412" fill="#916D3F" font-family="Nunito, Arial, sans-serif" font-size="13" font-weight="800">Shopping</text>
+    <rect x="796" y="385" width="106" height="44" rx="14" fill="#DFEBDD"/>
+    <text x="817" y="412" fill="#466D58" font-family="Nunito, Arial, sans-serif" font-size="13" font-weight="800">Documents</text>
+  </g>
+</svg>
